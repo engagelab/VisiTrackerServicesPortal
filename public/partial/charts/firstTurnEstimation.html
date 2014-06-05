@@ -1,0 +1,11 @@
+<div ng-controller="ChartCtrl-firstTurnEstimation">
+        <div class="modal-header">
+            <h3>
+                First Turn Estimation
+                <!-- button type="button" class="btn btn-info btn-mini" ng-csv="getCSVArray()" csv-header="['Age', 'Males', 'Females', 'Norwegians', 'Tourists', 'Others']" filename="groupsdemographics.csv">Export</button -->
+            </h3>
+            After starting the tracking, this chart shows the accumulated directions taken between the first recorded event and the second, in 45 degree intervals
+        </div>
+        <!--div id="chartFirstTurn"></div-->
+        <chart-first-turn-chart s="s" ng-repeat="s in series"></chart-first-turn-chart>
+</div>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>USER</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">POST /user</p>
+<p>Request</p>
+
+<pre>
+{
+  &quot;lastname&quot;:&quot;Simpson&quot;,<br>	&quot;firstname&quot;:&quot;Bart&quot;,<br>	&quot;email&quot;:&quot;bart@simpson.com&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>lastname &lt;string&gt;</li>
+  <li>firstname &lt;string&gt;</li>
+  <li>email &lt;string&gt;</li>
+  <li>login_id &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>  &quot;password&quot; : &quot;ae97bbb7-79e3-4be4-b330-82b069c3bf45&quot;,<br>  &quot;firstname&quot; : &quot;Bart&quot;,<br>  &quot;spaces&quot; : [],<br>  &quot;created_on&quot; : &quot;2013-04-16T08:41:41+02:00&quot;,<br>  &quot;email&quot; : &quot;bart@simpson.com&quot;,<br>  &quot;login_id&quot; : &quot;bart@simpson.com&quot;,<br>  &quot;lastname&quot; : &quot;Simpson&quot;<br>}</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+<p class="command">GET /user</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>    &quot;password&quot; : null,<br>    &quot;firstname&quot; : &quot;Bart&quot;,<br>    &quot;spaces&quot; : [],<br>    &quot;created_on&quot; : &quot;2013-04-16T08:41:41+02:00&quot;,<br>    &quot;email&quot; : &quot;bart@simpson.com&quot;,<br>    &quot;login_id&quot; : &quot;bart@simpson.com&quot;,<br>    &quot;lastname&quot; : &quot;Simpson&quot;<br>  },<br>  {<br>    &quot;_id&quot; : &quot;516cf3799c9505d88f000002&quot;,<br>    &quot;password&quot; : null,<br>    &quot;firstname&quot; : &quot;Homer&quot;,<br>    &quot;spaces&quot; : [],<br>    &quot;created_on&quot; : &quot;2013-04-16T08:45:13+02:00&quot;,<br>    &quot;email&quot; : &quot;homer@simpson.com&quot;,<br>    &quot;login_id&quot; : &quot;homer@simpson.com&quot;,<br>    &quot;lastname&quot; : &quot;Simpson&quot;<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+    <p class="command">GET /user/516cf2a59c9505ba56000001</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>  &quot;password&quot; : null,<br>  &quot;firstname&quot; : &quot;Bart&quot;,<br>  &quot;spaces&quot; : [],<br>  &quot;created_on&quot; : &quot;2013-04-16T08:41:41+02:00&quot;,<br>  &quot;email&quot; : &quot;bart@simpson.com&quot;,<br>  &quot;login_id&quot; : &quot;bart@simpson.com&quot;,<br>  &quot;lastname&quot; : &quot;Simpson&quot;<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">PUT /user</p>
+<p>Request</p>
+
+<pre>
+{
+    &quot;_id&quot;:&quot;516cf2a59c9505ba56000001&quot;,<br>	&quot;password&quot;:&quot;bartholomew&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id &lt;string&gt;</li>
+  <li>password &lt;string&gt; (optional)</li>
+  <li>lastname &lt;string&gt; (optional)</li>
+  <li>firstname &lt;string&gt; (optional)</li>
+  <li>email &lt;string&gt; (optional)</li>
+  <li>login_id &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>  &quot;password&quot; : &quot;bartholomew&quot;,<br>  &quot;firstname&quot; : &quot;Bart&quot;,<br>  &quot;spaces&quot; : [],<br>  &quot;created_on&quot; : &quot;2013-04-16T08:41:41+02:00&quot;,<br>  &quot;email&quot; : &quot;bart@simpson.com&quot;,<br>  &quot;login_id&quot; : &quot;bart@simpson.com&quot;,<br>  &quot;lastname&quot; : &quot;Simpson&quot;<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">DELETE /user/516cf3799c9505d88f000002</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;User deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

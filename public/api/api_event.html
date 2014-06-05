@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>EVENT</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">Add a new event for a session id</p>
+<p class="command">POST /session/51837c599c9505772a000001/event</p>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;51837f379c95053984000001&quot;,<br>  &quot;medias&quot; : [],<br>  &quot;interactions&quot; : [],<br>  &quot;sessionob_id&quot; : &quot;51837c599c9505772a000001&quot;,<br>  &quot;ypos&quot; : 0,<br>  &quot;created_on&quot; : &quot;2013-05-03T11:11:19+02:00&quot;,<br>  &quot;comment&quot; : null,<br>  &quot;xpos&quot; : 0<br>}</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">List all events</p>
+<p class="command">GET /event</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;51837c949c9505ee5e000001&quot;,<br>    &quot;medias&quot; : [],<br>    &quot;interactions&quot; : [],<br>    &quot;sessionob_id&quot; : &quot;51837c599c9505772a000001&quot;,<br>    &quot;ypos&quot; : 50,<br>    &quot;created_on&quot; : &quot;2013-05-03T11:00:04+02:00&quot;,<br>    &quot;comment&quot; : &quot;yo&quot;,<br>    &quot;xpos&quot; : 50<br>  },<br>  {<br>    &quot;_id&quot; : &quot;51837f379c95053984000001&quot;,<br>    &quot;medias&quot; : [],<br>    &quot;interactions&quot; : [],<br>    &quot;sessionob_id&quot; : &quot;51837c599c9505772a000001&quot;,<br>    &quot;ypos&quot; : 0,<br>    &quot;created_on&quot; : &quot;2013-05-03T11:11:19+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;xpos&quot; : 0<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">List all events for a session id</p>
+<p class="command">GET /session/51837c599c9505772a000001/events</p>
+<p>Response</p>
+
+  <pre>[<br>  {<br>    &quot;_id&quot; : &quot;51837c949c9505ee5e000001&quot;,<br>    &quot;medias&quot; : [],<br>    &quot;interactions&quot; : [],<br>    &quot;sessionob_id&quot; : &quot;51837c599c9505772a000001&quot;,<br>    &quot;ypos&quot; : 50,<br>    &quot;created_on&quot; : &quot;2013-05-03T11:00:04+02:00&quot;,<br>    &quot;comment&quot; : &quot;yo&quot;,<br>    &quot;xpos&quot; : 50<br>  },<br>  {<br>    &quot;_id&quot; : &quot;51837f379c95053984000001&quot;,<br>    &quot;medias&quot; : [],<br>    &quot;interactions&quot; : [],<br>    &quot;sessionob_id&quot; : &quot;51837c599c9505772a000001&quot;,<br>    &quot;ypos&quot; : 0,<br>    &quot;created_on&quot; : &quot;2013-05-03T11:11:19+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;xpos&quot; : 0<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Get an event by event id</p>
+<p class="command">GET /event/51837c949c9505ee5e000001</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;51837c949c9505ee5e000001&quot;,<br>  &quot;medias&quot; : [],<br>  &quot;interactions&quot; : [],<br>  &quot;sessionob_id&quot; : &quot;51837c599c9505772a000001&quot;,<br>  &quot;ypos&quot; : 50,<br>  &quot;created_on&quot; : &quot;2013-05-03T11:00:04+02:00&quot;,<br>  &quot;comment&quot; : &quot;yo&quot;,<br>  &quot;xpos&quot; : 50<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Update an event</p>
+<p class="command">PUT /event</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot; : &quot;51837c949c9505ee5e000001&quot;,<br>	&quot;interactions&quot;:[&quot;5190f9500ac19c319e000002&quot;]<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>comment &lt;string&gt; (optional)</li>
+  <li>xpos &lt;number&gt; (optional)</li>
+  <li>ypos &lt;number&gt; (optional)</li>
+  <li>interactions &lt;array&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;51837c949c9505ee5e000001&quot;,<br>  &quot;medias&quot; : [],<br>  &quot;interactions&quot; : [<br>    {<br>      &quot;_id&quot; : &quot;5190f9500ac19c319e000002&quot;,<br>      &quot;eventob_id&quot; : &quot;51837c949c9505ee5e000001&quot;,<br>      &quot;action_ids&quot; : [<br>        &quot;5190e14c0ac19c5d83000003&quot;<br>      ],<br>      &quot;visitors&quot; : [<br>        {<br>          &quot;_id&quot; : &quot;5190f3330ac19ce127000001&quot;,<br>          &quot;consent&quot; : null,<br>          &quot;age&quot; : 55,<br>          &quot;nationality&quot; : null,<br>          &quot;interaction_ids&quot; : [<br>            &quot;5190f9500ac19c319e000002&quot;<br>          ],<br>          &quot;created_on&quot; : &quot;2013-05-13T16:05:39+02:00&quot;,<br>          &quot;comment&quot; : null,<br>          &quot;sex&quot; : null,<br>          &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;<br>        }<br>      ],<br>      &quot;resource_ids&quot; : [<br>        &quot;5190e14f0ac19c5d83000004&quot;<br>      ],<br>      &quot;created_on&quot; : &quot;2013-05-13T16:31:44+02:00&quot;,<br>      &quot;visitor_ids&quot; : [<br>        &quot;5190f3330ac19ce127000001&quot;<br>      ]<br>    }<br>  ],<br>  &quot;interactions_ids&quot; : [],<br>  &quot;sessionob_id&quot; : &quot;51837c599c9505772a000001&quot;,<br>  &quot;ypos&quot; : 50,<br>  &quot;created_on&quot; : &quot;2013-05-03T11:00:04+02:00&quot;,<br>  &quot;comment&quot; : &quot;yo&quot;,<br>  &quot;xpos&quot; : 50<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Delete an event</p>
+    <p class="command">DELETE /event/51837f379c95053984000001</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;Event deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

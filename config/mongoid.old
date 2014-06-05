@@ -1,0 +1,18 @@
+development:
+  sessions:
+    default:
+      database: heroku_app15673847
+      hosts:
+        - localhost
+      options:
+        consistency: :strong
+  options:
+
+
+production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOLAB_URI'] %>
+      options:
+        skip_version_check: true
+        safe: true

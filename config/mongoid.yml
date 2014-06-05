@@ -1,0 +1,22 @@
+development:
+  sessions:
+    default:
+      database: heroku_app15673847
+      hosts:
+        - localhost
+      options:
+        consistency: :strong
+  options:
+    identity_map_enabled: true
+    raise_not_found_error: false
+
+production:
+  sessions:
+    default:
+      uri: <%= ENV['MONGOLAB_URI'] %>
+      options:
+        skip_version_check: true
+        safe: true
+  options:
+    identity_map_enabled: true
+    raise_not_found_error: false

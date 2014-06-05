@@ -1,0 +1,10 @@
+POST the following individually to:  /resource?token=xxxxxxxxx
+Requires valid authorisation token
+
+{"type" : "NONE"}
+
+{ "_id" : { "$oid" : "51a8af179c95059aa400000f" }, "interaction_ids" : [ { "$oid" : "5204d9cb0ac19cfe59000017" } ], "type" : "IPAD" }
+{ "_id" : { "$oid" : "51a8af1b9c95059aa4000010" }, "interaction_ids" : [ { "$oid" : "5204e7210ac19c4a68000039" } ], "type" : "WALL" }
+{ "_id" : { "$oid" : "52021d799c950529b6000001" }, "interaction_ids" : [ { "$oid" : "5204d9c20ac19cfe59000015" }, { "$oid" : "5204e6320ac19c6d7d000023" } ], "type" : "EXHIBIT" }
+{ "_id" : { "$oid" : "520231419c9505dd7100000a" }, "interaction_ids" : [ { "$oid" : "5204e7170ac19c4a68000037" } ], "type" : "BROCHURE" }
+{ "_id" : { "$oid" : "51a8af119c95059aa400000e" }, "interaction_ids" : [ { "$oid" : "5204d16c0ac19c507f000004" }, { "$oid" : "5204d16e0ac19c507f000006" }, { "$oid" : "5204d2320ac19cceec000005" }, { "$oid" : "5204d2380ac19cceec000008" }, { "$oid" : "5204d23c0ac19cceec000009" }, { "$oid" : "5204d9bc0ac19cfe59000012" }, { "$oid" : "5204d9d10ac19cfe59000018" }, { "$oid" : "5204e6290ac19c6d7d000020" }, { "$oid" : "5204e63b0ac19c6d7d000025" }, { "$oid" : "5204e6440ac19c6d7d000027" }, { "$oid" : "5204e64a0ac19c6d7d000028" }, { "$oid" : "5204e70e0ac19c4a68000034" }, { "$oid" : "5204e72b0ac19c4a6800003b" }, { "$oid" : "5204e73a0ac19c4a6800003d" }, { "$oid" : "5204e73f0ac19c4a6800003e" } ], "type" : "NONE" }

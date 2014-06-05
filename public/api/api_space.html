@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>SPACE</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">Create a new space for a user id</p>
+<p class="command">POST /user/516cf2a59c9505ba56000001/space</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;label&quot;:&quot;bart space&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>label &lt;string&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>  &quot;password&quot; : &quot;bartholomew&quot;,<br>  &quot;firstname&quot; : &quot;Bart&quot;,<br>  &quot;spaces&quot; : [<br>    {<br>      &quot;_id&quot; : &quot;516d0add9c950582d5000003&quot;,<br>      &quot;sessions&quot; : [],<br>      &quot;session_ids&quot; : [],<br>      &quot;created_on&quot; : &quot;2013-04-16T10:25:01+02:00&quot;,<br>      &quot;label&quot; : &quot;bart space&quot;,<br>      &quot;rooms&quot; : [],<br>      &quot;user_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>      &quot;room_ids&quot; : []<br>    }<br>  ],<br>  &quot;created_on&quot; : &quot;2013-04-16T08:41:41+02:00&quot;,<br>  &quot;email&quot; : &quot;bart@simpson.com&quot;,<br>  &quot;login_id&quot; : &quot;bart@simpson.com&quot;,<br>  &quot;lastname&quot; : &quot;Simpson&quot;<br>}</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Add existing space to a user id</p>
+<p class="command">POST /user/516d0f439c95051f30000005/space/516d128a9c95054981000001</p>
+
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516d0f439c95051f30000005&quot;,<br>  &quot;password&quot; : &quot;127337cd-5b4e-4434-896a-b33cdf1f51be&quot;,<br>  &quot;firstname&quot; : &quot;Homer&quot;,<br>  &quot;space_ids&quot; : [<br>    &quot;516d128a9c95054981000001&quot;<br>  ],<br>  &quot;spaces&quot; : [<br>    {<br>      &quot;_id&quot; : &quot;516d128a9c95054981000001&quot;,<br>      &quot;user_ids&quot; : [<br>        &quot;516cf2a59c9505ba56000001&quot;,<br>        &quot;516d0f439c95051f30000005&quot;<br>      ],<br>      &quot;sessions&quot; : [],<br>      &quot;session_ids&quot; : [],<br>      &quot;created_on&quot; : &quot;2013-04-16T10:57:46+02:00&quot;,<br>      &quot;label&quot; : &quot;my cool space&quot;,<br>      &quot;rooms&quot; : [],<br>      &quot;room_ids&quot; : []<br>    }<br>  ],<br>  &quot;created_on&quot; : &quot;2013-04-16T10:43:47+02:00&quot;,<br>  &quot;email&quot; : &quot;homer@simpson.com&quot;,<br>  &quot;login_id&quot; : &quot;homer@simpson.com&quot;,<br>  &quot;lastname&quot; : &quot;Simpson&quot;<br>}</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">List all spaces</p>
+<p class="command">GET /space</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;516d0add9c950582d5000003&quot;,<br>    &quot;sessions&quot; : [],<br>    &quot;session_ids&quot; : [],<br>    &quot;created_on&quot; : &quot;2013-04-16T10:25:01+02:00&quot;,<br>    &quot;label&quot; : &quot;new space label&quot;,<br>    &quot;rooms&quot; : [],<br>    &quot;user_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>    &quot;room_ids&quot; : []<br>  },<br>  {<br>    &quot;_id&quot; : &quot;516d0d479c9505aa94000004&quot;,<br>    &quot;sessions&quot; : [],<br>    &quot;session_ids&quot; : [],<br>    &quot;created_on&quot; : &quot;2013-04-16T10:35:19+02:00&quot;,<br>    &quot;label&quot; : &quot;new label&quot;,<br>    &quot;rooms&quot; : [],<br>    &quot;user_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>    &quot;room_ids&quot; : []<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">List all spaces for a user id</p>
+<p class="command">GET /user/516cf2a59c9505ba56000001/spaces</p>
+<p>Response</p>
+
+  <pre>[<br>  {<br>    &quot;_id&quot; : &quot;516d0add9c950582d5000003&quot;,<br>    &quot;sessions&quot; : [],<br>    &quot;session_ids&quot; : [],<br>    &quot;created_on&quot; : &quot;2013-04-16T10:25:01+02:00&quot;,<br>    &quot;label&quot; : &quot;new space label&quot;,<br>    &quot;rooms&quot; : [],<br>    &quot;user_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>    &quot;room_ids&quot; : []<br>  },<br>  {<br>    &quot;_id&quot; : &quot;516d0d479c9505aa94000004&quot;,<br>    &quot;sessions&quot; : [],<br>    &quot;session_ids&quot; : [],<br>    &quot;created_on&quot; : &quot;2013-04-16T10:35:19+02:00&quot;,<br>    &quot;label&quot; : &quot;new label&quot;,<br>    &quot;rooms&quot; : [],<br>    &quot;user_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>    &quot;room_ids&quot; : []<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Get a space by space id</p>
+<p class="command">GET /space/516d0add9c950582d5000003</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;516d0add9c950582d5000003&quot;,<br>  &quot;sessions&quot; : [],<br>  &quot;session_ids&quot; : [],<br>  &quot;created_on&quot; : &quot;2013-04-16T10:25:01+02:00&quot;,<br>  &quot;label&quot; : &quot;bart space&quot;,<br>  &quot;rooms&quot; : [],<br>  &quot;user_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>  &quot;room_ids&quot; : []<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Update a space label</p>
+<p class="command">PUT /space</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;: &quot;516d0add9c950582d5000003&quot;,<br>	&quot;label&quot;: &quot;new space label&quot;	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id &lt;string&gt;</li>
+  <li>label &lt;string&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516d0add9c950582d5000003&quot;,<br>  &quot;sessions&quot; : [],<br>  &quot;session_ids&quot; : [],<br>  &quot;created_on&quot; : &quot;2013-04-16T10:25:01+02:00&quot;,<br>  &quot;label&quot; : &quot;new space label&quot;,<br>  &quot;rooms&quot; : [],<br>  &quot;user_id&quot; : &quot;516cf2a59c9505ba56000001&quot;,<br>  &quot;room_ids&quot; : []<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Delete a space</p>
+    <p class="command">DELETE /space/516d0d479c9505aa94000004</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;Space deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

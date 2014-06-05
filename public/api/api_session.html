@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>SESSION</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">Create a new session for a space id</p>
+<p class="command">POST /space/516d21569c95051e0d000003/session</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;label&quot;:&quot;my session&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>label &lt;string&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516d21569c95051e0d000003&quot;,<br>  &quot;sessionobs&quot; : [<br>    {<br>      &quot;_id&quot; : &quot;516d2ba29c95059928000001&quot;,<br>      &quot;space_ids&quot; : [<br>        &quot;516d21569c95051e0d000003&quot;<br>      ],<br>      &quot;label&quot; : &quot;my session&quot;,<br>      &quot;created_on&quot; : &quot;2013-04-16T12:44:50+02:00&quot;,<br>  	  &quot;finished_on&quot; : null<br>    }<br>  ],<br>  &quot;user_ids&quot; : [<br>    &quot;516d20fe9c95050e8c000001&quot;<br>  ],<br>  &quot;label&quot; : &quot;my space&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-16T12:00:54+02:00&quot;,<br>  &quot;rooms&quot; : [],<br>  &quot;room_ids&quot; : [],<br>  &quot;sessionob_ids&quot; : [<br>    &quot;516d2ba29c95059928000001&quot;<br>  ]<br>}</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">List all sessions</p>
+<p class="command">GET /session</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;516d2ba29c95059928000001&quot;,<br>    &quot;space_ids&quot; : [<br>      &quot;516d21569c95051e0d000003&quot;,<br>      &quot;516d243e9c95053ce8000004&quot;<br>    ],<br>    &quot;label&quot; : &quot;my session&quot;,<br>    &quot;created_on&quot; : &quot;2013-04-16T12:44:50+02:00&quot;,<br>    &quot;finished_on&quot; : null<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">List all sessions for a space id</p>
+<p class="command">GET /space/516d21569c95051e0d000003/sessions</p>
+<p>Response</p>
+
+  <pre>[<br>  {<br>    &quot;_id&quot; : &quot;516d2ba29c95059928000001&quot;,<br>    &quot;space_ids&quot; : [<br>      &quot;516d21569c95051e0d000003&quot;,<br>      &quot;516d243e9c95053ce8000004&quot;<br>    ],<br>    &quot;label&quot; : &quot;my session&quot;,<br>    &quot;created_on&quot; : &quot;2013-04-16T12:44:50+02:00&quot;,<br>    &quot;finished_on&quot; : null<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Get a session by session id</p>
+<p class="command">GET /session/516d2ba29c95059928000001</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;516d2ba29c95059928000001&quot;,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;,<br>    &quot;516d243e9c95053ce8000004&quot;<br>  ],<br>  &quot;label&quot; : &quot;my session&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-16T12:44:50+02:00&quot;,<br>  &quot;finished_on&quot; : null<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Update a session</p>
+<p class="command">PUT /session</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;:&quot;516d2ba29c95059928000001&quot;,<br>	&quot;label&quot;:&quot;updated session label&quot;	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>label &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516d2ba29c95059928000001&quot;,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;,<br>    &quot;516d243e9c95053ce8000004&quot;<br>  ],<br>  &quot;label&quot; : &quot;updated session label&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-16T12:44:50+02:00&quot;,<br>  &quot;finished_on&quot; : null<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Close/terminate a session</p>
+    <p class="command">PUT /session/516d2ba29c95059928000001/close</p>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516d2ba29c95059928000001&quot;,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;,<br>    &quot;516d243e9c95053ce8000004&quot;<br>  ],<br>  &quot;label&quot; : &quot;updated session label&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-16T12:44:50+02:00&quot;,<br>  &quot;finished_on&quot; : &quot;2013-04-17T09:50:02+02:00&quot;<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Delete a session</p>
+    <p class="command">DELETE /session/516d2ba29c95059928000001</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;Session deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

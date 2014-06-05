@@ -1,0 +1,28 @@
+<form class="row form-horizontal" name="userEditForm" ng-controller="ProfileCtrl" novalidate>
+        <ul ng:repeat="itemToEdit in userEdit" style="list-style-type: none;">
+            <li>
+                <div ng:controller="UserEditorController">
+                    <div collapse="isNotCollapsed">
+                        <span>{{itemToEdit.name}}</span><br/>
+                        <b>{{itemToEdit.value}}</b><a href="#" ng-click="enableEditor()">&nbsp edit</a>
+                    </div>
+
+                    <div class="control-group" collapse="isCollapsed">
+                        <label class="control-label" for="inputFirst">{{itemToEdit.name}}</label>
+                        <div class="controls">
+                            <input type="text" id="inputFirst" placeholder='{{itemToEdit.value}}' name="editValue" ng-model="editValue" required>
+                            <a href="#" ng-click="retain()">&nbsp ok</a>&nbsp or</span><a href="#" ng-click="disableEditor()">&nbsp cancel</a>
+                            <div class="input-help">
+                                <h4>Invalid Text</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+        <div class="control-group">
+            <div class="controls" ng-show="userEditForm.$invalid">
+                <button type="submit" id='updateBtn' class="btnManual" ng-click="updateProfile($event)">Save Profile</button>
+            </div>
+        </div>
+</form>

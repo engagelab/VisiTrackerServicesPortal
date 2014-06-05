@@ -1,0 +1,64 @@
+Some security principles:
+
+Yes, you are right - this is not safe. NEVER do such things:
+
+NEVER store plain passwords in database (like "my_password_123"
+NEVER return any sort of sensitive information to the client and perform secret computations in JavaScript
+NEVER use simple password comparison (providedPassword == stored password) in server or client code
+NEVER use unsecure (http) layer - use safe one (HTTPS) instead
+	
+A proper way of doing this is following:
+
+Generate Hashed value of password on store it in DB (use SHA-1 algorithm and salted passwords)
+Wire SSL certificate to get HTTPS support, that way noone will spy on what user sends to your server
+User enters username+password and sends them to your code on the server.  On the server you compute SHA-1 hash and compare it against the stored value in DB. 
+	Then you send back the RESULT of authentication to the client and keep the track of it on the server by persistent session.
+
+
+Sinatra best practices:
+
+If you want to validate users of your system, I suggest using authentication that operates at the Rack layer, like Warden. Not only is this likely more robust than a custom authentication solution would be, it operates as middleware so its mostly transparent and can be used outside of Sinatra should you decide to add additional middleware, custom Rack applications, or Rails to your Rack stack.
+
+The way mongodb operates, where commands are separated from the data, means injections are unlikely so some minimal sanity checking of user inputs should make the risk of database compromises pretty low. As with any database its good practice to never directly put any data into your database from a user without proper bounds checking and escaping.
+
+Make sure users can't input HTML/JS/CSS that can be seen by other users, otherwise your site will likely be vulnerable to XSS.
+
+When possible clearly define all of the possible inputs a user is allowed to choose from, then make sure the input you receive from users matches EXACTLY one of the possible values you defined. If not either reject the input or pick a sane default value.
+
+Good unit testing and broad test coverage can often help reduce unexpected behavior which can sometimes be used to help prevent security problems. Try that out. Certainly couldn't hurt.
+
+Another good practice which can peripherally benefit security is to not reinvent the wheel. Go with hardened, proven, functioning solutions the rest of the community depends on so you can benefit from the insights of others and reap the rewards when someone else finds and fixes a security flaw in a library you use.
+
+There are many other system, database, and application level concerns you may need to address to ensure your application is secure. The scope of your question is a bit too broad to answer without intimate knowledge of your complete system architecture.
+
+
+
+
+
+Sinatra & SSL:
+Split app into auth and non-auth routes
+http://opensoul.org/blog/archives/2011/11/16/sinatra-and-ssl/
+
+Rack::SSL
+https://github.com/josh/rack-ssl
+
+Sinatra Sessions:
+http://www.sinatrarb.com/faq.html#sessions
+http://rubylearning.com/blog/2009/09/30/cookie-based-sessions-in-sinatra/
+
+Sinatra Authentication:
+http://128bitstudios.com/2011/11/21/authentication-with-sinatra/
+http://ididitmyway.herokuapp.com/past/2011/2/22/really_simple_authentication_in_sinatra/
+http://www.sinatrarb.com/faq.html#auth
+https://github.com/maxjustus/sinatra-authentication
+
+
+response.set_cookie("my_cookie", :value => "value_of_cookie",
+                    :domain => myDomain,
+                    :path => myPath,
+                    :expires => Date.new(2020,1,1))
+
+cookie = request.cookies("my_cookie")
+
+don't set localhost as a domain for your cookies!
+http://stackoverflow.com/questions/5078091/sinatra-response-set-cookie-doesnt-work

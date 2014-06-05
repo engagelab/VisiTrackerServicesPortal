@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>VISITOR</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">Add a new visitor  for a visitorgroup id ()</p>
+<p class="command">POST /visitorgroup/516f843d0ac19ca9f1000001/visitor</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;age&quot;: 40	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>age &lt;integer&gt; (optional)</li>
+  <li>sex &lt;string&gt; (optional)</li>
+  <li>nationality &lt;string&gt; (optional)</li>
+  <li>comment &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>[<br>  {<br>    &quot;_id&quot; : &quot;516f8bf80ac19c5627000002&quot;,<br>    &quot;consent&quot; : null,<br>    &quot;age&quot; : 40,<br>    &quot;nationality&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-04-18T08:00:24+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;sex&quot; : null,<br>    &quot;visitorgroup_id&quot; : &quot;516f843d0ac19ca9f1000001&quot;<br>  }<br>]</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">List all visitor groups</p>
+<p class="command">GET /visitor</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;5187d0540ac19ca4b4000001&quot;,<br>    &quot;consent&quot; : null,<br>    &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;,<br>    &quot;age&quot; : 35,<br>    &quot;nationality&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-05-06T17:46:28+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;interaction_id&quot; : null,<br>    &quot;sex&quot; : null<br>  },<br>  {<br>    &quot;_id&quot; : &quot;5187d0560ac19ca4b4000002&quot;,<br>    &quot;consent&quot; : null,<br>    &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;,<br>    &quot;age&quot; : 35,<br>    &quot;nationality&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-05-06T17:46:30+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;interaction_id&quot; : null,<br>    &quot;sex&quot; : null<br>  },<br>  {<br>    &quot;_id&quot; : &quot;5187d0560ac19ca4b4000003&quot;,<br>    &quot;consent&quot; : null,<br>    &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;,<br>    &quot;age&quot; : 35,<br>    &quot;nationality&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-05-06T17:46:30+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;interaction_id&quot; : null,<br>    &quot;sex&quot; : null<br>  },<br>  {<br>    &quot;_id&quot; : &quot;5187d0570ac19ca4b4000004&quot;,<br>    &quot;consent&quot; : null,<br>    &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;,<br>    &quot;age&quot; : 35,<br>    &quot;nationality&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-05-06T17:46:31+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;interaction_id&quot; : null,<br>    &quot;sex&quot; : null<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">List all visitors for a visitorgroup id</p>
+<p class="command">GET /visitorgroup/516f843d0ac19ca9f1000001/visitor</p>
+<p>Response</p>
+
+  <pre>[<br>  {<br>    &quot;_id&quot; : &quot;516f8bf80ac19c5627000002&quot;,<br>    &quot;consent&quot; : null,<br>    &quot;age&quot; : 40,<br>    &quot;nationality&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-04-18T08:00:24+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;sex&quot; : null,<br>    &quot;visitorgroup_id&quot; : &quot;516f843d0ac19ca9f1000001&quot;<br>  },<br>  {<br>    &quot;_id&quot; : &quot;516f8dd30ac19cef18000003&quot;,<br>    &quot;consent&quot; : null,<br>    &quot;age&quot; : 40,<br>    &quot;nationality&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-04-18T08:08:19+02:00&quot;,<br>    &quot;comment&quot; : null,<br>    &quot;sex&quot; : null,<br>    &quot;visitorgroup_id&quot; : &quot;516f843d0ac19ca9f1000001&quot;<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Get a visitor by visitor id</p>
+<p class="command">GET /visitor/516f8bf80ac19c5627000002</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;5187d0560ac19ca4b4000003&quot;,<br>  &quot;consent&quot; : null,<br>  &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;,<br>  &quot;age&quot; : 35,<br>  &quot;nationality&quot; : null,<br>  &quot;created_on&quot; : &quot;2013-05-06T17:46:30+02:00&quot;,<br>  &quot;comment&quot; : null,<br>  &quot;interaction_id&quot; : null,<br>  &quot;sex&quot; : null<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Update a visitorgroup</p>
+<p class="command">PUT /visitor</p>
+<p>Request</p>
+
+<pre>{<br>  &quot;_id&quot; : &quot;5187d0560ac19ca4b4000003&quot;,<br>  &quot;age&quot; : 38,<br>  &quot;nationality&quot; : &quot;norwegian&quot;,<br>  &quot;comment&quot; : &quot;tralala&quot;,<br>  &quot;sex&quot; : &quot;male&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>age &lt;integer&gt; (optional)</li>
+  <li>sex &lt;string&gt; (optional)</li>
+  <li>nationality &lt;string&gt; (optional)</li>
+  <li>comment &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;5187d0560ac19ca4b4000003&quot;,<br>  &quot;consent&quot; : null,<br>  &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;,<br>  &quot;age&quot; : 38,<br>  &quot;nationality&quot; : &quot;norwegian&quot;,<br>  &quot;created_on&quot; : &quot;2013-05-06T17:46:30+02:00&quot;,<br>  &quot;comment&quot; : &quot;tralala&quot;,<br>  &quot;interaction_id&quot; : null,<br>  &quot;sex&quot; : &quot;male&quot;<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Delete a visitor</p>
+    <p class="command">DELETE /visitor/516f8bf80ac19c5627000002</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;Visitor deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

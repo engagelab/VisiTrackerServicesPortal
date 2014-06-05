@@ -1,0 +1,48 @@
+{
+    "sessionChartList" : [
+        {
+            "id": 1,
+            "name": "Position over time",
+            "shortName": "positionOverTime"
+        },
+        {
+            "id": 3,
+            "name": "Parallel Sets",
+            "shortName": "parallelSets"
+        }
+    ],
+    "roomChartList" : [
+        {
+            "id": 4,
+            "name": "Demographics",
+            "shortName": "demographics"
+        },
+        {
+            "id": 5,
+            "name": "Duration & Quantity",
+            "shortName": "frequencyMapDurationQuantity"
+        },
+        {
+            "id": 6,
+            "name": "Actions & Resources",
+            "shortName": "bubbleMatrixActionsResources"
+        },
+        {
+            "id": 7,
+            "name": "Group Demographics",
+            "shortName": "groupsDemographics"
+        },
+        {
+            "id": 8,
+            "name": "First Turn Estimation",
+            "shortName": "firstTurnEstimation"
+        }
+    ],
+    "studyChartList" : [
+        {
+            "id": 9,
+            "name": "Surveys",
+            "shortName": "surveys"
+        }
+    ]
+}

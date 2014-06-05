@@ -1,0 +1,250 @@
+/* Put your CSS here */
+html, body {
+    margin: 5px;
+}
+
+a {
+  cursor: pointer;
+}
+
+.selected {
+    background-color: aliceblue;
+}
+
+#heading {
+    float:left;
+    width: 100%;
+}
+
+#heading #navigation {
+    float: left;
+}
+
+#heading #logo {
+    float: left;
+}
+
+.clearFloats {
+    clear: both;
+}
+
+.navtabs {
+    background: rgba(255, 255, 255, 1);
+    position:fixed;
+    top:0; left:0;
+    width:100%;
+    z-index:999;
+}
+
+.navbar .nav > li > a.active {
+  color: black;
+  font-weight: bold;
+}
+
+.about {
+  padding-bottom: 15px;
+  width: 700px;
+}
+
+.about + .about {
+  padding-top: 25px;
+  border-top: 1px solid #000;
+}
+
+.studyListHeader {
+    float: left;
+}
+
+.studyCarousel {
+    width: 400px;
+    height: 212px;
+    float: left;
+}
+
+.studyCarouselRemoveRoom {
+    float: right;
+}
+
+.startPoint,
+.endPoint {
+    position: absolute;
+}
+
+/*.filter_options form input {
+    margin-top: 0;
+}*/
+
+.colStudies {
+    float: left;
+    width: 20%;
+    height: 650px;
+    overflow-y: auto;
+}
+
+.colRooms {
+    float: left;
+    width: 15%;
+    border-left: dotted;
+    border-width: 2px;
+    border-color: darkgrey;
+    height: 650px;
+    overflow-y: auto;
+}
+
+.colSessions {
+    float: left;
+    width: 18%;
+    border-left: dotted;
+    border-width: 2px;
+    border-color: darkgrey;
+    height: 650px;
+    overflow-y: auto;
+}
+
+.last {
+    float: right;
+    width: 46%;
+    border-left: dotted;
+    border-width: 2px;
+    border-color: darkgrey;
+}
+
+.col li {
+    padding-bottom: 20px;
+}
+
+.innerColumnLeft {
+    width: 60%;
+    display: inline-block;
+
+}
+
+.innerColumnRight {
+    width: 37%;
+    display: inline-block;
+
+}
+
+.eventListingScrollable {
+    height: 200px; overflow-y: scroll;
+}
+
+body {
+    overflow-y:scroll;
+}
+
+text {
+    font: 12px sans-serif;
+}
+
+.studiesListItem {
+    list-style: none;
+}
+
+.modal-huge {
+    width: 1050px;
+    height: 800px;
+    overflow: visible;
+    margin-left: -30%;
+}
+
+.imageDetailModal {
+   /* width:1024px; margin-left:-512px; top:5%; */
+
+}
+
+.eventSublistScrollable li {
+    line-height:0.7em;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+/****** CHARTING *******/
+
+
+.chartHolder {
+    margin: 10px;
+    min-width: 100px;
+    min-height: 100px;
+    /*
+      Minimum height and width is a good idea to prevent negative SVG dimensions...
+      For example width should be =< margin.left + margin.right + 1,
+      of course 1 pixel for the entire chart would not be very useful, BUT should not have errors
+    */
+}
+
+.chart {
+    position: relative;
+    width:1024px;
+    height:723px;
+    z-index: 2;
+}
+
+#statChartDiv {
+    display: block;
+    clear: both;
+    height: 100%;
+    border-top: dotted;
+    border-width: 2px;
+    border-color: darkgrey;
+    padding: 0.5em;
+}
+
+.filterOptions {
+    display: inline-block;
+    height: 440px;
+    padding: 10px;
+    max-width: 330px;
+    margin: 0.5em;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: dotted;
+    border-width: 2px;
+    border-color: darkgrey;
+}
+
+#chartSurvey {
+    top: 80px;
+    left: 40px;
+}
+
+.chartDemographics svg {
+    height: 500px;
+}
+
+.chartGroupsDemographics svg {
+    height: 500px;
+}
+
+.visitor-color-10012411 {
+    color: #98C6FB;
+}
+.visitor-color-6013275 {
+
+    color: #5BC15B;
+}
+.visitor-color-13778730 {
+    color: #D23F2A;
+}
+.visitor-color-15567670 {
+    color: #ED8B36;
+}
+
+.studiesListItem {
+    list-style: none;
+}
+
+.collapsableStudyDiv {
+    background: #c0c0c0;
+    /*border:2px solid #33333;     */
+    border-radius:10px;
+}
+
+.innerCollapsableStudyDiv {
+    margin: 15px 15px 15px 15px;
+}
+
+#studiesWrapper {
+    padding-right: 30px;
+    padding-left: 30px;
+}

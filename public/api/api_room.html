@@ -1,0 +1,164 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>ROOM</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">Create a new room for a space id</p>
+<p class="command">POST /space/516d128a9c95054981000001/room</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;label&quot;:&quot;bart room&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>label &lt;string&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516d128a9c95054981000001&quot;,<br>  &quot;user_ids&quot; : [<br>    &quot;516cf2a59c9505ba56000001&quot;,<br>    &quot;516d0f439c95051f30000005&quot;<br>  ],<br>  &quot;sessions&quot; : [],<br>  &quot;session_ids&quot; : [],<br>  &quot;created_on&quot; : &quot;2013-04-16T10:57:46+02:00&quot;,<br>  &quot;label&quot; : &quot;new space label&quot;,<br>  &quot;rooms&quot; : [<br>    {<br>      &quot;_id&quot; : &quot;516d17d19c9505d79b000001&quot;,<br>      &quot;position&quot; : null,<br>      &quot;space_ids&quot; : [<br>        &quot;516d128a9c95054981000001&quot;<br>      ],<br>      &quot;representation&quot; : null,<br>      &quot;created_on&quot; : &quot;2013-04-16T11:20:17+02:00&quot;,<br>      &quot;label&quot; : &quot;new room&quot;,<br>      &quot;endPoints&quot; : [],<br>      &quot;startPoints&quot; : []<br>    }<br>  ],<br>  &quot;room_ids&quot; : [<br>    &quot;516d17d19c9505d79b000001&quot;<br>  ]<br>}</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Add existing room to a space id</p>
+<p class="command">POST /space/516d243e9c95053ce8000004/room/516d24639c95053ce8000005</p>
+
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516d243e9c95053ce8000004&quot;,<br>  &quot;user_ids&quot; : [<br>    &quot;516d20fe9c95050e8c000001&quot;<br>  ],<br>  &quot;sessions&quot; : [],<br>  &quot;session_ids&quot; : [],<br>  &quot;label&quot; : &quot;my second space&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-16T12:13:18+02:00&quot;,<br>  &quot;rooms&quot; : [<br>    {<br>      &quot;_id&quot; : &quot;516d24639c95053ce8000005&quot;,<br>      &quot;position&quot; : null,<br>      &quot;space_ids&quot; : [<br>        &quot;516d21569c95051e0d000003&quot;,<br>        &quot;516d243e9c95053ce8000004&quot;<br>      ],<br>      &quot;start_points&quot; : [],<br>      &quot;representation&quot; : null,<br>      &quot;label&quot; : &quot;new room&quot;,<br>      &quot;created_on&quot; : &quot;2013-04-16T12:13:55+02:00&quot;,<br>      &quot;end_points&quot; : []<br>    }<br>  ],<br>  &quot;room_ids&quot; : [<br>    &quot;516d24639c95053ce8000005&quot;<br>  ]<br>}</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">List all rooms</p>
+<p class="command">GET /room</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;516d24639c95053ce8000005&quot;,<br>    &quot;position&quot; : null,<br>    &quot;space_ids&quot; : [<br>      &quot;516d21569c95051e0d000003&quot;,<br>      &quot;516d243e9c95053ce8000004&quot;<br>    ],<br>    &quot;start_points&quot; : [],<br>    &quot;representation&quot; : null,<br>    &quot;label&quot; : &quot;new room&quot;,<br>    &quot;created_on&quot; : &quot;2013-04-16T12:13:55+02:00&quot;,<br>    &quot;end_points&quot; : []<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">List all rooms for a space id</p>
+<p class="command">GET /space/516d21569c95051e0d000003/rooms</p>
+<p>Response</p>
+
+  <pre>[<br>  {<br>    &quot;_id&quot; : &quot;516d24639c95053ce8000005&quot;,<br>    &quot;position&quot; : null,<br>    &quot;space_ids&quot; : [<br>      &quot;516d21569c95051e0d000003&quot;,<br>      &quot;516d243e9c95053ce8000004&quot;<br>    ],<br>    &quot;start_points&quot; : [],<br>    &quot;representation&quot; : null,<br>    &quot;label&quot; : &quot;new room&quot;,<br>    &quot;created_on&quot; : &quot;2013-04-16T12:13:55+02:00&quot;,<br>    &quot;end_points&quot; : []<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Get a room by room id</p>
+<p class="command">GET /room/516d24639c95053ce8000005</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;516d24639c95053ce8000005&quot;,<br>  &quot;position&quot; : null,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;,<br>    &quot;516d243e9c95053ce8000004&quot;<br>  ],<br>  &quot;start_points&quot; : [],<br>  &quot;representation&quot; : null,<br>  &quot;label&quot; : &quot;new room&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-16T12:13:55+02:00&quot;,<br>  &quot;end_points&quot; : []<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Update a room</p>
+<p class="command">PUT /room</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;:&quot;516d24639c95053ce8000005&quot;,<br>	&quot;label&quot;:&quot;updated label&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>label &lt;string&gt; (optional)</li>
+  <li>position &lt;string&gt; (optional)</li>
+  <li>representation &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516d24639c95053ce8000005&quot;,<br>  &quot;position&quot; : null,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;,<br>    &quot;516d243e9c95053ce8000004&quot;<br>  ],<br>  &quot;start_points&quot; : [],<br>  &quot;representation&quot; : null,<br>  &quot;label&quot; : &quot;updated label&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-16T12:13:55+02:00&quot;,<br>  &quot;end_points&quot; : []<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">Add endpoint coordinates to a room id</p>
+    <p class="command">PUT /room/endcoords</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;:&quot;516e5f810ac19c45ba000001&quot;,<br>	&quot;xpos&quot;: 100,<br>	&quot;ypos&quot;: 50	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>xpos &lt;integer&gt;</li>
+  <li>ypos &lt;integer&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516e5f810ac19c45ba000001&quot;,<br>  &quot;position&quot; : null,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;<br>  ],<br>  &quot;start_points&quot; : [<br>    {<br>      &quot;ypos&quot; : 13,<br>      &quot;xpos&quot; : 0<br>    },<br>    {<br>      &quot;ypos&quot; : 50,<br>      &quot;xpos&quot; : 100<br>    }<br>  ],<br>  &quot;representation&quot; : null,<br>  &quot;label&quot; : &quot;new room&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-17T10:38:25+02:00&quot;,<br>  &quot;end_points&quot; : [{<br>      &quot;ypos&quot; : 100,<br>      &quot;xpos&quot; : 50<br>    }]<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Add startpoint coordinates to a room id</p>
+    <p class="command">PUT /room/startcoords</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;:&quot;516e5f810ac19c45ba000001&quot;,<br>	&quot;xpos&quot;: 100,<br>	&quot;ypos&quot;: 50	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>xpos &lt;integer&gt;</li>
+  <li>ypos &lt;integer&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516e5f810ac19c45ba000001&quot;,<br>  &quot;position&quot; : null,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;<br>  ],<br>  &quot;start_points&quot; : [{<br>		&quot;xpos&quot;: 100,<br>		&quot;ypos&quot;: 50	<br>	}],<br>  &quot;representation&quot; : null,<br>  &quot;label&quot; : &quot;new room&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-17T10:38:25+02:00&quot;,<br>  &quot;end_points&quot; : []<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Remove startpoint coordinates to a room id</p>
+    <p class="command">PUT /room/startcoords/delete</p>
+    <p>Request</p>
+    <pre>{<br>	&quot;_id&quot;:&quot;516e5f810ac19c45ba000001&quot;,<br>	&quot;xpos&quot;: 100,<br>	&quot;ypos&quot;: 50	<br>}</pre>
+    <p>Parameters</p>
+    <ul>
+      <li>_id</li>
+      <li>xpos &lt;integer&gt;</li>
+      <li>ypos &lt;integer&gt;</li>
+    </ul>
+    <p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516e5f810ac19c45ba000001&quot;,<br>  &quot;position&quot; : null,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;<br>  ],<br>  &quot;start_points&quot; : [],<br>  &quot;representation&quot; : null,<br>  &quot;label&quot; : &quot;new room&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-17T10:38:25+02:00&quot;,<br>  &quot;end_points&quot; : []<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command"></p>
+    <p class="command">Remove endpoint coordinates to a room id</p>
+    <p class="command">PUT /room/endcoords/delete</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;:&quot;516e5f810ac19c45ba000001&quot;,<br>	&quot;xpos&quot;: 100,<br>	&quot;ypos&quot;: 50	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>xpos &lt;integer&gt;</li>
+  <li>ypos &lt;integer&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516e5f810ac19c45ba000001&quot;,<br>  &quot;position&quot; : null,<br>  &quot;space_ids&quot; : [<br>    &quot;516d21569c95051e0d000003&quot;<br>  ],<br>  &quot;start_points&quot; : [<br>    {<br>      &quot;ypos&quot; : 13,<br>      &quot;xpos&quot; : 0<br>    },<br>    {<br>      &quot;ypos&quot; : 50,<br>      &quot;xpos&quot; : 100<br>    }<br>  ],<br>  &quot;representation&quot; : null,<br>  &quot;label&quot; : &quot;new room&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-17T10:38:25+02:00&quot;,<br>  &quot;end_points&quot; : []<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Delete a room</p>
+    <p class="command">DELETE /room/516d24639c95053ce8000005</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;Room deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

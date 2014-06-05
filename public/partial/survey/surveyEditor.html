@@ -1,0 +1,36 @@
+<div class="modal-header" ng-controller="SurveyEditor">
+    <h3>Add question {{ salutation }}</h3>
+</div>
+<div class="modal-body" style="min-height: 300px; min-width: 400px">
+    <div class="btn-group">
+        <button type="button" class="btn" bs-dropdown="dropdown">Add question type <b class="caret"></b></button>
+    </div>
+    <br />
+    <hr />
+    <div id="quest-group">
+        <span>Type: {{ formItemType }}</span>
+        <br />
+        <div ng-switch on="formItemType">
+            <div ng-switch-when="TextField">
+                <pre>Question: {{tfQuestion| json}}</pre>
+                <input type="text" ng-model="tfQuestion" bs-typeahead="typeahead">
+            </div>
+            <div ng-switch-when="TextArea">
+                <pre>Question: {{taQuestion| json}}</pre>
+                <input type="text" ng-model="taQuestion" bs-typeahead="typeahead">
+            </div>
+            <div ng-switch-when="RadioButtons">
+                <pre>Question: {{rbQuestion| json}}</pre>
+                <input type="text" ng-model="rbQuestion" bs-typeahead="typeahead">
+            </div>
+            <div ng-switch-when="Checkboxes">
+                <pre>Question: {{cbQuestion| json}}</pre>
+                <input type="text" ng-model="cbQuestion" bs-typeahead="typeahead">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-click="parentController(dismiss)">Save</button>
+    <button class="btn" ng-click="dismiss()">Cancel</button>
+</div>

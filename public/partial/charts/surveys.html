@@ -1,0 +1,31 @@
+<style>
+
+.surveychart rect {
+    stroke : white;
+    fill : steelblue;
+}
+
+.surveychart text {
+    font-size: 0.7em;
+}
+
+</style>
+<div ng-controller="ChartCtrl-survey">
+    <h3>Combined Survey Results</h3>
+    <div style="margin-left:20px; margin-top: 20px;">
+    <select class="btn btn-info btn-xs" style="height: 22px;" ng-model="selectedSurvey" ng-options="item as item.text for item in dropdown" ng-change="processData()">
+        <option value="">Select Survey</option>
+    </select>
+    </div>
+    <div style="margin-left:20px; margin-top: 20px; min-height: 100px; float: left">
+        <h5>Textual questions</h5>
+        <select id="textQuestionList" size="2" style="width: 400px; min-height: 100px" required ng-options="a as a.label for a in textAnswers" ng-model="textQuestion.question" ng-change="showTextAnswers()"></select>
+    </div>
+    <div style="margin-left:20px; margin-top: 20px; min-height: 100px; float: left">
+        <h5>Textual answers</h5>
+        <select id="textAnswerList" size="2" style="width: 400px; min-height: 100px" required ng-options="b for b in textQuestion.question.answer" ng-model="textQuestionAnswer.answer" ></select>
+    </div>
+    <div class="chart">
+        <div id="chartSurvey"></div>
+    </div>
+</div>

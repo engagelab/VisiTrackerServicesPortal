@@ -1,0 +1,51 @@
+<div style="max-width: 800px;">
+    <form class="form-horizontal" role="form" ng-controller="RegisterCtrl" novalidate>
+        <div class="form-group">
+            <label class="col-xs-2 control-label" for="inputFirstname">First Name</label>
+            <div class="col-xs-6 controls">
+                <input type="text" class="form-control" id="inputFirstname" placeholder="First Name" ng-model="user.firstName" required>
+                <div class="col-xs-4 input-help">
+                    <h4>Invalid Text</h4>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label" for="inputLast">Last Name</label>
+            <div class="col-xs-6 controls">
+                <input type="text" id="inputLast" class="form-control" placeholder="Last Name" ng-model="user.lastName" required>
+                <div class="col-xs-4 input-help">
+                    <h4>Invalid Text</h4>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label" for="inputEmail">Email</label>
+            <div class="col-xs-6 controls">
+                <input type="email" id="inputEmail" class="form-control" placeholder="Email" ng-model="user.email" required>
+                <div class="col-xs-4 input-help">
+                    <h4>Invalid Email</h4>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-2 control-label" for="inputPassword">Password</label>
+            <div class="col-xs-6 controls">
+                <input type="password" ng-model="user.password" class="form-control immediate-help" password-validate required id="inputPassword" placeholder="Password">
+                <div class="col-xs-4 input-help">
+                    <h4>Password must meet the following requirements:</h4>
+                    <ul>
+                        <li ng-class="pwdHasLetter">At least <strong>one letter</strong></li>
+                        <li ng-class="pwdHasNumber">At least <strong>one number</strong></li>
+                        <li ng-class="pwdValidLength">At least <strong>8 characters long</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-2 col-xs-2 controls">
+                <button type="submit" class="btn" ng-click="registerMe($event)">Create Account</button>
+                <button class="btn" disabled>Create Account</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,5 @@
+POST the following individually to:  /action?token=xxxxxxxxx
+Requires valid authorisation token
+
+{ "type" : "START" }
+{ "type" : "STOP" }

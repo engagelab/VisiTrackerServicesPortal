@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>INTERACTION</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">Add a new interaction</p>
+<p class="command">POST /interaction</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;visitors&quot;: [&quot;5187d0540ac19ca4b4000001&quot;],<br>	&quot;action&quot;: &quot;518a32b09c9505c209000001&quot;,<br>	&quot;resource&quot;: &quot;518a32249c9505f500000001&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>type &lt;string&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>    &quot;_id&quot; : &quot;5190cd400ac19c4d55000001&quot;,<br>    &quot;action&quot; : {<br>      &quot;_id&quot; : &quot;518a32b09c9505c209000001&quot;,<br>      &quot;type&quot; : &quot;sit&quot;,<br>      &quot;interaction_id&quot; : &quot;5190cd400ac19c4d55000001&quot;<br>    },<br>    &quot;resource&quot; : {<br>      &quot;_id&quot; : &quot;518a32249c9505f500000001&quot;,<br>      &quot;type&quot; : &quot;ipad&quot;,<br>      &quot;interaction_id&quot; : &quot;5190cd400ac19c4d55000001&quot;<br>    },<br>    &quot;visitors&quot; : [<br>      {<br>        &quot;_id&quot; : &quot;5187d0540ac19ca4b4000001&quot;,<br>        &quot;consent&quot; : null,<br>        &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;,<br>        &quot;age&quot; : 35,<br>        &quot;nationality&quot; : null,<br>        &quot;created_on&quot; : &quot;2013-05-06T17:46:28+02:00&quot;,<br>        &quot;comment&quot; : null,<br>        &quot;interaction_id&quot; : &quot;5190cd400ac19c4d55000001&quot;,<br>        &quot;sex&quot; : null<br>      }<br>    ],<br>    &quot;event_id&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-05-13T13:23:44+02:00&quot;<br>  }</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">List all actions</p>
+<p class="command">GET /interaction</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;5190cd400ac19c4d55000001&quot;,<br>    &quot;action&quot; : {<br>      &quot;_id&quot; : &quot;518a32b09c9505c209000001&quot;,<br>      &quot;type&quot; : &quot;sit&quot;,<br>      &quot;interaction_id&quot; : &quot;5190cd400ac19c4d55000001&quot;<br>    },<br>    &quot;resource&quot; : {<br>      &quot;_id&quot; : &quot;518a32249c9505f500000001&quot;,<br>      &quot;type&quot; : &quot;ipad&quot;,<br>      &quot;interaction_id&quot; : &quot;5190cd400ac19c4d55000001&quot;<br>    },<br>    &quot;visitors&quot; : [<br>      {<br>        &quot;_id&quot; : &quot;5187d0540ac19ca4b4000001&quot;,<br>        &quot;consent&quot; : null,<br>        &quot;visitorgroup_id&quot; : &quot;5187cf289c95057f0f000002&quot;,<br>        &quot;age&quot; : 35,<br>        &quot;nationality&quot; : null,<br>        &quot;created_on&quot; : &quot;2013-05-06T17:46:28+02:00&quot;,<br>        &quot;comment&quot; : null,<br>        &quot;interaction_id&quot; : &quot;5190cd400ac19c4d55000001&quot;,<br>        &quot;sex&quot; : null<br>      }<br>    ],<br>    &quot;event_id&quot; : null,<br>    &quot;created_on&quot; : &quot;2013-05-13T13:23:44+02:00&quot;<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Get a action by action id</p>
+<p class="command">GET /action/516fd9b50ac19ccd83000002</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;516fd9b50ac19ccd83000002&quot;,<br>  &quot;type&quot; : &quot;sit&quot;<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Update an action</p>
+<p class="command">PUT /action</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;:&quot;516fd9b50ac19ccd83000002&quot;,<br>	&quot;type&quot;:&quot;read&quot;	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>type &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516fd9b50ac19ccd83000002&quot;,<br>  &quot;type&quot; : &quot;read&quot;<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Delete an action</p>
+    <p class="command">DELETE /action/516fd9b50ac19ccd83000002</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;Action deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

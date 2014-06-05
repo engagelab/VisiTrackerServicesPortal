@@ -1,0 +1,612 @@
+[
+    {
+        "_id": "51fb8fa5069ea5d013000006",
+        "comment": "",
+        "created_on": 1375440805,
+        "interactions": [
+            {
+                "_id": "51fb8fa5069ea5d013000005",
+                "action_ids": [
+                    "51a8aefa9c95059aa400000a"
+                ],
+                "actions": [
+                    {
+                        "_id": "51a8aefa9c95059aa400000a",
+                        "interaction_ids": [
+                            "51d42a930ac19cd272000010",
+                            "51f66a700ac19cc85200000d",
+                            "51f681cc069ea5a5bb00000e",
+                            "51f8d116069ea5a9c1000023",
+                            "51fb8fa5069ea5d013000005"
+                        ],
+                        "type": "START"
+                    }
+                ],
+                "created_on": 1375440805,
+                "eventob_id": "51fb8fa5069ea5d013000006",
+                "resource_ids": [],
+                "resources": [],
+                "visitor_ids": [
+                    "51fb8f8b069ea5d013000003",
+                    "51fb8f8c069ea5d013000004"
+                ],
+                "visitors": [
+                    {
+                        "_id": "51fb8f8b069ea5d013000003",
+                        "age": "Young adult",
+                        "artefact_ids": [],
+                        "color": "10012411",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440779,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Tourist",
+                        "sex": "Male",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    },
+                    {
+                        "_id": "51fb8f8c069ea5d013000004",
+                        "age": "Adult",
+                        "artefact_ids": [],
+                        "color": "6013275",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440780,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8ff4069ea5d01300000c",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Norwegian",
+                        "sex": "Female",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    }
+                ]
+            }
+        ],
+        "medias": [],
+        "sessionob_id": "51fb8f87069ea5d013000001",
+        "xpos": 300,
+        "ypos": 640
+    },
+    {
+        "_id": "51fb8fb8069ea5d013000007",
+        "comment": "",
+        "created_on": 1375440824,
+        "interactions": [
+            {
+                "_id": "51fb8fc0069ea5d013000008",
+                "action_ids": [
+                    "51a8af049c95059aa400000c"
+                ],
+                "actions": [
+                    {
+                        "_id": "51a8af049c95059aa400000c",
+                        "interaction_ids": [
+                            "51d42aa00ac19cd272000015",
+                            "51f66a7d0ac19cc852000011",
+                            "51f682c9069ea5419d000015",
+                            "51f8d124069ea5a9c1000026",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010"
+                        ],
+                        "type": "READ"
+                    }
+                ],
+                "created_on": 1375440832,
+                "eventob_id": "51fb8fb8069ea5d013000007",
+                "resource_ids": [
+                    "51a8af1b9c95059aa4000010"
+                ],
+                "resources": [
+                    {
+                        "_id": "51a8af1b9c95059aa4000010",
+                        "interaction_ids": [
+                            "51d42aa00ac19cd272000015",
+                            "51f682cd069ea5419d000016",
+                            "51f8d124069ea5a9c1000026",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a"
+                        ],
+                        "type": "WALL"
+                    }
+                ],
+                "visitor_ids": [
+                    "51fb8f8b069ea5d013000003",
+                    "51fb8f8c069ea5d013000004"
+                ],
+                "visitors": [
+                    {
+                        "_id": "51fb8f8b069ea5d013000003",
+                        "age": "Young adult",
+                        "artefact_ids": [],
+                        "color": "10012411",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440779,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Tourist",
+                        "sex": "Male",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    },
+                    {
+                        "_id": "51fb8f8c069ea5d013000004",
+                        "age": "Adult",
+                        "artefact_ids": [],
+                        "color": "6013275",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440780,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8ff4069ea5d01300000c",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Norwegian",
+                        "sex": "Female",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    }
+                ]
+            }
+        ],
+        "medias": [],
+        "sessionob_id": "51fb8f87069ea5d013000001",
+        "xpos": 88,
+        "ypos": 404
+    },
+    {
+        "_id": "51fb8fd0069ea5d013000009",
+        "comment": "",
+        "created_on": 1375440848,
+        "interactions": [
+            {
+                "_id": "51fb8fde069ea5d01300000a",
+                "action_ids": [
+                    "51a8af049c95059aa400000c"
+                ],
+                "actions": [
+                    {
+                        "_id": "51a8af049c95059aa400000c",
+                        "interaction_ids": [
+                            "51d42aa00ac19cd272000015",
+                            "51f66a7d0ac19cc852000011",
+                            "51f682c9069ea5419d000015",
+                            "51f8d124069ea5a9c1000026",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010"
+                        ],
+                        "type": "READ"
+                    }
+                ],
+                "created_on": 1375440862,
+                "eventob_id": "51fb8fd0069ea5d013000009",
+                "resource_ids": [
+                    "51a8af1b9c95059aa4000010"
+                ],
+                "resources": [
+                    {
+                        "_id": "51a8af1b9c95059aa4000010",
+                        "interaction_ids": [
+                            "51d42aa00ac19cd272000015",
+                            "51f682cd069ea5419d000016",
+                            "51f8d124069ea5a9c1000026",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a"
+                        ],
+                        "type": "WALL"
+                    }
+                ],
+                "visitor_ids": [
+                    "51fb8f8b069ea5d013000003"
+                ],
+                "visitors": [
+                    {
+                        "_id": "51fb8f8b069ea5d013000003",
+                        "age": "Young adult",
+                        "artefact_ids": [],
+                        "color": "10012411",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440779,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Tourist",
+                        "sex": "Male",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    }
+                ]
+            }
+        ],
+        "medias": [],
+        "sessionob_id": "51fb8f87069ea5d013000001",
+        "xpos": 138,
+        "ypos": 72
+    },
+    {
+        "_id": "51fb8fe8069ea5d01300000b",
+        "comment": "",
+        "created_on": 1375440872,
+        "interactions": [
+            {
+                "_id": "51fb8ff4069ea5d01300000c",
+                "action_ids": [
+                    "51a8aef59c95059aa4000009"
+                ],
+                "actions": [
+                    {
+                        "_id": "51a8aef59c95059aa4000009",
+                        "interaction_ids": [
+                            "51f682cd069ea5419d000016",
+                            "51f8d13f069ea5a9c1000028",
+                            "51fb8ff4069ea5d01300000c"
+                        ],
+                        "type": "SIT"
+                    }
+                ],
+                "created_on": 1375440884,
+                "eventob_id": "51fb8fe8069ea5d01300000b",
+                "resource_ids": [
+                    "51a8af119c95059aa400000e"
+                ],
+                "resources": [
+                    {
+                        "_id": "51a8af119c95059aa400000e",
+                        "interaction_ids": [
+                            "51d42a990ac19cd272000013",
+                            "51f66a780ac19cc852000010",
+                            "51f66a7d0ac19cc852000011",
+                            "51f682ea069ea5419d000018",
+                            "51fb8ff4069ea5d01300000c"
+                        ],
+                        "type": "NONE"
+                    }
+                ],
+                "visitor_ids": [
+                    "51fb8f8c069ea5d013000004"
+                ],
+                "visitors": [
+                    {
+                        "_id": "51fb8f8c069ea5d013000004",
+                        "age": "Adult",
+                        "artefact_ids": [],
+                        "color": "6013275",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440780,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8ff4069ea5d01300000c",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Norwegian",
+                        "sex": "Female",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    }
+                ]
+            }
+        ],
+        "medias": [],
+        "sessionob_id": "51fb8f87069ea5d013000001",
+        "xpos": 300,
+        "ypos": 63
+    },
+    {
+        "_id": "51fb9005069ea5d01300000d",
+        "comment": "",
+        "created_on": 1375440901,
+        "interactions": [
+            {
+                "_id": "51fb9011069ea5d01300000e",
+                "action_ids": [
+                    "51a8af049c95059aa400000c"
+                ],
+                "actions": [
+                    {
+                        "_id": "51a8af049c95059aa400000c",
+                        "interaction_ids": [
+                            "51d42aa00ac19cd272000015",
+                            "51f66a7d0ac19cc852000011",
+                            "51f682c9069ea5419d000015",
+                            "51f8d124069ea5a9c1000026",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010"
+                        ],
+                        "type": "READ"
+                    }
+                ],
+                "created_on": 1375440913,
+                "eventob_id": "51fb9005069ea5d01300000d",
+                "resource_ids": [
+                    "51a8af179c95059aa400000f"
+                ],
+                "resources": [
+                    {
+                        "_id": "51a8af179c95059aa400000f",
+                        "interaction_ids": [
+                            "51f681e6069ea5a5bb000010",
+                            "51f682c9069ea5419d000015",
+                            "51f8d13f069ea5a9c1000028",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010"
+                        ],
+                        "type": "IPAD"
+                    }
+                ],
+                "visitor_ids": [
+                    "51fb8f8b069ea5d013000003",
+                    "51fb8f8c069ea5d013000004"
+                ],
+                "visitors": [
+                    {
+                        "_id": "51fb8f8b069ea5d013000003",
+                        "age": "Young adult",
+                        "artefact_ids": [],
+                        "color": "10012411",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440779,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Tourist",
+                        "sex": "Male",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    },
+                    {
+                        "_id": "51fb8f8c069ea5d013000004",
+                        "age": "Adult",
+                        "artefact_ids": [],
+                        "color": "6013275",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440780,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8ff4069ea5d01300000c",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Norwegian",
+                        "sex": "Female",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    }
+                ]
+            }
+        ],
+        "medias": [],
+        "sessionob_id": "51fb8f87069ea5d013000001",
+        "xpos": 861,
+        "ypos": 108
+    },
+    {
+        "_id": "51fb901b069ea5d01300000f",
+        "comment": "",
+        "created_on": 1375440923,
+        "interactions": [
+            {
+                "_id": "51fb9031069ea5d013000010",
+                "action_ids": [
+                    "51a8af049c95059aa400000c"
+                ],
+                "actions": [
+                    {
+                        "_id": "51a8af049c95059aa400000c",
+                        "interaction_ids": [
+                            "51d42aa00ac19cd272000015",
+                            "51f66a7d0ac19cc852000011",
+                            "51f682c9069ea5419d000015",
+                            "51f8d124069ea5a9c1000026",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010"
+                        ],
+                        "type": "READ"
+                    }
+                ],
+                "created_on": 1375440945,
+                "eventob_id": "51fb901b069ea5d01300000f",
+                "resource_ids": [
+                    "51a8af179c95059aa400000f"
+                ],
+                "resources": [
+                    {
+                        "_id": "51a8af179c95059aa400000f",
+                        "interaction_ids": [
+                            "51f681e6069ea5a5bb000010",
+                            "51f682c9069ea5419d000015",
+                            "51f8d13f069ea5a9c1000028",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010"
+                        ],
+                        "type": "IPAD"
+                    }
+                ],
+                "visitor_ids": [
+                    "51fb8f8b069ea5d013000003",
+                    "51fb8f8c069ea5d013000004"
+                ],
+                "visitors": [
+                    {
+                        "_id": "51fb8f8b069ea5d013000003",
+                        "age": "Young adult",
+                        "artefact_ids": [],
+                        "color": "10012411",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440779,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Tourist",
+                        "sex": "Male",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    },
+                    {
+                        "_id": "51fb8f8c069ea5d013000004",
+                        "age": "Adult",
+                        "artefact_ids": [],
+                        "color": "6013275",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440780,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8ff4069ea5d01300000c",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Norwegian",
+                        "sex": "Female",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    }
+                ]
+            }
+        ],
+        "medias": [],
+        "sessionob_id": "51fb8f87069ea5d013000001",
+        "xpos": 756,
+        "ypos": 474
+    },
+    {
+        "_id": "51fb903a069ea5d013000012",
+        "comment": null,
+        "created_on": 1375440954,
+        "interactions": [
+            {
+                "_id": "51fb9039069ea5d013000011",
+                "action_ids": [
+                    "51a8aeff9c95059aa400000b"
+                ],
+                "actions": [
+                    {
+                        "_id": "51a8aeff9c95059aa400000b",
+                        "interaction_ids": [
+                            "51d42aa40ac19cd272000016",
+                            "51f66a850ac19cc852000012",
+                            "51f68309069ea5419d000019",
+                            "51f8d155069ea5a9c100002a",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "type": "STOP"
+                    }
+                ],
+                "created_on": 1375440953,
+                "eventob_id": "51fb903a069ea5d013000012",
+                "resource_ids": [],
+                "resources": [],
+                "visitor_ids": [
+                    "51fb8f8b069ea5d013000003",
+                    "51fb8f8c069ea5d013000004"
+                ],
+                "visitors": [
+                    {
+                        "_id": "51fb8f8b069ea5d013000003",
+                        "age": "Young adult",
+                        "artefact_ids": [],
+                        "color": "10012411",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440779,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8fde069ea5d01300000a",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Tourist",
+                        "sex": "Male",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    },
+                    {
+                        "_id": "51fb8f8c069ea5d013000004",
+                        "age": "Adult",
+                        "artefact_ids": [],
+                        "color": "6013275",
+                        "comment": null,
+                        "consent": null,
+                        "created_on": 1375440780,
+                        "interaction_ids": [
+                            "51fb8fa5069ea5d013000005",
+                            "51fb8fc0069ea5d013000008",
+                            "51fb8ff4069ea5d01300000c",
+                            "51fb9011069ea5d01300000e",
+                            "51fb9031069ea5d013000010",
+                            "51fb9039069ea5d013000011"
+                        ],
+                        "isGroupVisitor": false,
+                        "nationality": "Norwegian",
+                        "sex": "Female",
+                        "visitorgroup_id": "51fb8f87069ea5d013000002"
+                    }
+                ]
+            }
+        ],
+        "medias": [],
+        "sessionob_id": "51fb8f87069ea5d013000001",
+        "xpos": 300,
+        "ypos": 680
+    }
+]

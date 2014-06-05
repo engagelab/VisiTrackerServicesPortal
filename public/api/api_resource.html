@@ -1,0 +1,88 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>RESOURCE</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">Add a new resource</p>
+<p class="command">POST /resource</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;type&quot;: &quot;brochure&quot;<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>type &lt;string&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516fe13f0ac19c3ed7000001&quot;,<br>  &quot;type&quot; : &quot;brochure&quot;<br>}</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">List all resources</p>
+<p class="command">GET /resource</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;516fe13f0ac19c3ed7000001&quot;,<br>    &quot;type&quot; : &quot;brochure&quot;<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Get a resource by resource id</p>
+<p class="command">GET /resource/516fe13f0ac19c3ed7000001</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;516fe13f0ac19c3ed7000001&quot;,<br>  &quot;type&quot; : &quot;brochure&quot;<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Update a resource</p>
+<p class="command">PUT /resource</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;:&quot;516fe13f0ac19c3ed7000001&quot;,<br>	&quot;type&quot;:&quot;book&quot;	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>type &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516fe13f0ac19c3ed7000001&quot;,<br>  &quot;type&quot; : &quot;book&quot;<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Delete a resource</p>
+    <p class="command">DELETE /resource/516fe1f20ac19cd322000002</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;Resource deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

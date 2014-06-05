@@ -1,0 +1,17 @@
+source 'https://rubygems.org'
+
+#gem 'rake', '>= 0.8.1'
+#ruby '1.9.3'
+ruby '2.1.0'
+gem 'sinatra'
+gem 'mongoid', '~>3.1.6'
+gem 'bson_ext'
+gem 'aws-s3'
+gem 'bcrypt-ruby', '~> 3.0.0', :require => 'bcrypt'
+#gem 'carrierwave'
+#gem 'fog', '~> 1.3.1'
+gem 'mini_magick', '~> 3.5.0'
+#Required for debugging wih ruby 2.0:
+#gem 'linecache19', '>= 0.5.13', :git => 'https://github.com/robmathews/linecache19-0.5.13.git'
+#gem 'ruby-debug-base19x', '>= 0.11.30.pre12'
+#gem 'ruby-debug-ide', '>= 0.4.17.beta17'

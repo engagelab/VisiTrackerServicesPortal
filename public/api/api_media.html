@@ -1,0 +1,97 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untitled Document</title>
+<meta charset="UTF-8">
+<link href="api.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h2>&nbsp;</h2>
+    <h2><a href="api.html">API iObserve v1.0</a></h2>
+    <p>&nbsp;</p>
+  </div>
+  <div class="sidebar1">
+    <ul class="nav">
+      <li><a href="api_user.html">User</a></li>
+      <li><a href="api_space.html">Space</a></li>
+      <li><a href="api_room.html">Room</a></li>
+      <li><a href="api_session.html">Session</a></li>
+      <li><a href="api_visitorgroup.html">Visitor Group</a></li>
+      <li><a href="api_visitor.html">Visitor</a></li>
+      <li><a href="api_event.html">Event</a></li>
+      <li><a href="api_interaction.html">Interaction</a></li>
+      <li><a href="api_media.html">Media</a></li>
+      <li><a href="api_resource.html">Resource</a></li>
+      <li><a href="api_action.html">Action</a></li>
+    </ul>
+  </div>
+  <div class="content">
+<h3>MEDIA</h3>
+<hr color="#000000">
+<p class="command">&nbsp;</p>
+<p class="command">Add a new media for a session id</p>
+<p class="command">POST /session/516e57a50ac19c5ae0000001/media</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;uri&quot;:&quot;456789&quot;,<br>	&quot;content_type&quot;:&quot;video/mov&quot;	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>uri &lt;string&gt;</li>
+  <li>content_type &lt;string&gt;</li>
+</ul>
+<p>Response</p>
+    <pre>[<br>  {<br>    &quot;_id&quot; : &quot;516e9e000ac19c8dce000001&quot;,<br>    &quot;eventob_id&quot; : null,<br>    &quot;sessionob_id&quot; : &quot;516e57a50ac19c5ae0000001&quot;,<br>    &quot;created_on&quot; : &quot;2013-04-17T15:05:04+02:00&quot;,<br>    &quot;uri&quot; : &quot;456789&quot;,<br>    &quot;content_type&quot; : &quot;video/mov&quot;<br>  }<br>]</pre>
+    
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">List all medias</p>
+<p class="command">GET /media</p>
+<p>Response</p>
+
+<pre>[<br>  {<br>    &quot;_id&quot; : &quot;516e9e000ac19c8dce000001&quot;,<br>    &quot;eventob_id&quot; : null,<br>    &quot;sessionob_id&quot; : &quot;516e57a50ac19c5ae0000001&quot;,<br>    &quot;created_on&quot; : &quot;2013-04-17T15:05:04+02:00&quot;,<br>    &quot;uri&quot; : &quot;456789&quot;,<br>    &quot;content_type&quot; : &quot;video/mov&quot;<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">List all medias for a session id</p>
+<p class="command">GET /session/516e57a50ac19c5ae0000001/media</p>
+<p>Response</p>
+
+  <pre>[<br>  {<br>    &quot;_id&quot; : &quot;516e9e000ac19c8dce000001&quot;,<br>    &quot;eventob_id&quot; : null,<br>    &quot;sessionob_id&quot; : &quot;516e57a50ac19c5ae0000001&quot;,<br>    &quot;created_on&quot; : &quot;2013-04-17T15:05:04+02:00&quot;,<br>    &quot;uri&quot; : &quot;456789&quot;,<br>    &quot;content_type&quot; : &quot;video/mov&quot;<br>  }<br>]</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Get a media by media id</p>
+<p class="command">GET /media/516e9e000ac19c8dce000001</p>
+<p>Response</p>
+
+  <pre>{<br>  &quot;_id&quot; : &quot;516e9e000ac19c8dce000001&quot;,<br>  &quot;eventob_id&quot; : null,<br>  &quot;sessionob_id&quot; : &quot;516e57a50ac19c5ae0000001&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-17T15:05:04+02:00&quot;,<br>  &quot;uri&quot; : &quot;456789&quot;,<br>  &quot;content_type&quot; : &quot;video/mov&quot;<br>}</pre>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="command">Update a media</p>
+<p class="command">PUT /media</p>
+<p>Request</p>
+
+<pre>{<br>	&quot;_id&quot;:&quot;516e9e000ac19c8dce000001&quot;,<br>	&quot;uri&quot;:&quot;00000000&quot;,<br>	&quot;content_type&quot;:&quot;video/avi&quot;	<br>}</pre>
+<p>Parameters</p>
+<ul>
+  <li>_id</li>
+  <li>uri &lt;string&gt; (optional)</li>
+  <li>content_type &lt;string&gt; (optional)</li>
+</ul>
+<p>Response</p>
+    <pre>{<br>  &quot;_id&quot; : &quot;516e9e000ac19c8dce000001&quot;,<br>  &quot;eventob_id&quot; : null,<br>  &quot;sessionob_id&quot; : &quot;516e57a50ac19c5ae0000001&quot;,<br>  &quot;created_on&quot; : &quot;2013-04-17T15:05:04+02:00&quot;,<br>  &quot;uri&quot; : &quot;00000000&quot;,<br>  &quot;content_type&quot; : &quot;video/avi&quot;<br>}</pre>
+    <p class="command">&nbsp;</p>
+    <p class="command">&nbsp;</p>
+    <p class="command">Delete a media</p>
+    <p class="command">DELETE /media/516e9e000ac19c8dce000001</p>
+<p>Response</p>
+
+<pre>{<br>  &quot;message&quot; : &quot;Media deleted&quot;<br>}</pre>
+<p>&nbsp;</p>
+    <!-- end .content --></div>
+  <div class="footer">
+   <span class="footerDate">Last edited: 04/16/2013</span></div>
+</div>
+</body>
+</html>

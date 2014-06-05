@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>VisiTracker</title>
+
+    <!-- Local StyleSheets -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/loginStyle.css">
+    <link rel="stylesheet" href="css/dragdealer.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/ngProgress.css">
+    <link rel="stylesheet" type="text/css" href="css/bubble-matrix/style.css">
+    <link rel="stylesheet" type="text/css" href="css/bubble-matrix/theme.css">
+
+    <!-- External fixed dependencies -->
+    <script src="js/libs/jquery-1.10.2.js"></script>
+    <script src="js/libs/jquery-ui-1.10.4.min.js"></script>
+    <script src="js/libs/angular.min.js"></script>
+    <script src="js/libs/angular-resource.js"></script>
+    <script src="js/libs/storageprovider.js"></script>
+    <script src="js/libs/angular-sanitize.js"></script>
+    <script src="js/libs/ng-upload.js"></script>
+    <script src="js/libs/ngProgress.min.js"></script>
+    <script src="js/libs/moment.js"></script>
+    <script src="js/libs/dragdealer.min.js"></script>
+    <script src="js/libs/ui-bootstrap-tpls-0.11.0.min.js"></script>
+    <script src="js/charts/libs/d3.js" charset="utf-8"></script>
+
+    <!--  External Chart Scripts -->
+    <link rel="stylesheet" href="js/charts/libs/d3-parsets-master/d3.parsets.css">
+    <script src="js/charts/libs/d3-parsets-master/d3.parsets.js"></script>
+    <script src="js/charts/ng-csv.min.js"></script>
+    <link rel="stylesheet" href="js/charts/libs/nv-d3/nv.d3.css">
+    <script src="js/charts/libs/nv-d3/nv.d3.js"></script>
+    <script src="js/charts/libs/nv-d3/stream_layers.js"></script>
+
+    <!-- Local scripts -->
+    <script src="js/factories.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/studies.js"></script>
+    <script src="js/statistics.js"></script>
+
+    <!-- Local Chart scripts-->
+    <script src="js/charts/demographics.js"></script>
+    <script src="js/charts/parallelSets.js"></script>
+    <script src="js/charts/positionOverTime.js"></script>
+    <script src="js/charts/frequencyMapDurationQuantity.js"></script>
+    <script src="js/charts/frequencyMapActionsResources.js"></script>
+    <script src="js/charts/groupsDemographics.js"></script>
+    <script src="js/charts/surveys.js"></script>
+    <script src="js/charts/libs/bubbleMatrixChartStandalone.js"></script>
+    <script src="js/charts/bubbleMatrixActionsResources.js"></script>
+    <script src="js/charts/firstTurnEstimation.js"></script>
+
+</head>
+<body ng-app="iObserveApp">
+
+    <div ng-controller="NavCtrl">
+
+        <div ng-controller="ModalCtrl">
+            <script type="text/ng-template" id="LogoutWarningModal.html">
+                <div class="modal-header">
+                    <h3>Session expiry imminent!</h3>
+                </div>
+                <div class="modal-body">
+                    <span>Your session will expire in {{counter}} seconds. Do you want to extend or log out?</span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" ng-click="extend()">Extend</button>
+                    <button class="btn btn-warning" ng-click="logout()">Log Out</button>
+                </div>
+            </script>
+        </div>
+
+    <div id="heading">
+        <div id="logo">
+            <img src="img/logo2.png" ng-click="showingSplashScreen.showing = true"/><img src="img/logoSpacer.png"/>
+        </div>
+        <div id="navigation">
+            <tabset>
+                <tab style="font-size: 1.2em; font-weight: bold" ng-repeat="tab in tabs" select="checkSelectedTab(tab.title)" heading="{{tab.title}}" active="tab.active" disabled="tab.disabled">
+                </tab>
+            </tabset>
+        </div>
+        <img src="img/logoCircle.png"/>
+    </div>
+    <div class="clearFloats"></div>
+    <div ng-include src="activeTab().page" style="margin-top: 10px;"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<div ng-controller="ChartCtrl-frequencyMapDurationQuantity">
+    <div class="modal-header">
+        <h3>Frequency Map - Duration and Visitor Quantity
+            <button type="button" class="btn btn-info btn-xs" ng-csv="getCSVArray()" csv-header="['Time', 'X', 'Y', 'Duration', 'Visitors', 'EventID']" filename="duration&quantity.csv">Export</button>
+        </h3>
+    </div>
+    <div>
+        <div class="filterOptions" >
+            <div  style="width: 250px;">
+                <b>Sessions being charted</b>
+                <div ng-repeat="session in sessionDetails">
+                    <span>{{timeConverter(session.created_on)}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="filterOptions">
+            <div>
+                <b>Start Date</b>
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="myStartDateTime" is-open="openedDPS" min-date="'2014-01-01'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                     <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="openDatePanelStart($event)"><i class="fa fa-calendar"></i></button>
+                     </span>
+                </p>
+            </div>
+            <div>
+                <b>Start Time</b>
+                <timepicker ng-model="myStartDateTime" ng-change="changed()" hour-step="1" minute-step="1" show-meridian="ismeridian"></timepicker>
+            </div>
+            <div>
+                <b>End Date</b>
+                <p class="input-group">
+                    <input type="text" class="form-control" datepicker-popup="dd.MM.yyyy" ng-model="myEndDateTime" is-open="openedDPE" min-date="'2014-01-01'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" />
+                         <span class="input-group-btn">
+                            <button type="button" class="btn btn-default" ng-click="openDatePanelEnd($event)"><i class="fa fa-calendar"></i></button>
+                         </span>
+                </p>
+            </div>
+            <div>
+                <b>End Time</b>
+                <timepicker ng-model="myEndDateTime" ng-change="changed()" hour-step="1" minute-step="1" show-meridian="ismeridian"></timepicker>
+            </div>
+            <button class="btn btn-default btn-info" ng-click="dateTimeUpdate()">Update</button>
+        </div>
+    </div>
+    <div>
+        <div id="chart" ng-style="chartStyle"></div>
+        <div id="eventSlider" class="dragdealer" style="position:relative; width:1024px; z-index: 3;">
+            <div id="eventSliderBar" class="green-bar handle"></div>
+        </div><br/>
+        <div id="scaleSlider" class="dragdealer" style="width:300px;">
+            <div id="scaleSliderBar" class="scale-bar handle"></div>
+        </div><br/>
+    </div>
+    <span>Darker circles represent longer time durations.</span><br/>
+    <span>Larger circles indicate multiple visitors (up to four).</span>
+
+</div>
