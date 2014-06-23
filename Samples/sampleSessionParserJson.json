@@ -1,0 +1,251 @@
+[
+  {
+    "events": [
+      {
+        "visitors": [
+          {
+            "uid": "0901EF9F-A582-9F81-5726-C87F95F5DAE4",
+            "color": 3386591
+          },
+          {
+            "uid": "15EA80A2-A124-C222-F4E7-C87F95F55B39",
+            "color": 9225032
+          },
+          {
+            "uid": "EC3A3427-DB7D-9B42-043F-C87F95F5F9D3",
+            "color": 16297543
+          }
+        ],
+        "created_on": 1403523142326,
+        "xpos": 951,
+        "startpoint_id": "78855a42-1b3d-d960-9288-005041a57aa3",
+        "ypos": 330,
+        "interactions": [
+          {
+            "finished_on": 1403523143157,
+            "resource": {
+              "_id": "51b5e112c0acfed8bf000008",
+              "type": "NONE"
+            },
+            "created_on": 1403523143157,
+            "action": {
+              "_id": "51b5e0d6c0acfe8418000003",
+              "type": "START"
+            }
+          }
+        ]
+      },
+      {
+        "visitors": [
+          {
+            "uid": "EC3A3427-DB7D-9B42-043F-C87F95F5F9D3",
+            "color": 16297543
+          },
+          {
+            "uid": "0901EF9F-A582-9F81-5726-C87F95F5DAE4",
+            "color": 3386591
+          },
+          {
+            "uid": "15EA80A2-A124-C222-F4E7-C87F95F55B39",
+            "color": 9225032
+          }
+        ],
+        "xpos": 220,
+        "created_on": 1403523145253,
+        "ypos": 175,
+        "interactions": [
+          {
+            "resource": {
+              "_id": "51b5e112c0acfed8bf000008",
+              "type": "none"
+            },
+            "finished_on": 1403523166897,
+            "created_on": 1403523149936,
+            "action": {
+              "_id": "52428b215f79f80e37000011",
+              "type": "talk"
+            }
+          }
+        ]
+      },
+      {
+        "visitors": [
+          {
+            "uid": "0901EF9F-A582-9F81-5726-C87F95F5DAE4",
+            "color": 3386591
+          }
+        ],
+        "xpos": 161,
+        "created_on": 1403523152461,
+        "ypos": 424,
+        "interactions": [
+          {
+            "resource": {
+              "_id": "51b5e112c0acfed8bf000008",
+              "type": "none"
+            },
+            "finished_on": 1403523170778,
+            "created_on": 1403523156609,
+            "action": {
+              "_id": "51b5e0ecc0acfe7722000006",
+              "type": "read"
+            }
+          }
+        ]
+      },
+      {
+        "visitors": [
+          {
+            "uid": "15EA80A2-A124-C222-F4E7-C87F95F55B39",
+            "color": 9225032
+          }
+        ],
+        "xpos": 320,
+        "created_on": 1403523158836,
+        "ypos": 509,
+        "interactions": [
+          {
+            "resource": {
+              "_id": "51b5e112c0acfed8bf000008",
+              "type": "none"
+            },
+            "finished_on": 1403523170778,
+            "created_on": 1403523162584,
+            "action": {
+              "_id": "51b5e0ecc0acfe7722000006",
+              "type": "read"
+            }
+          }
+        ]
+      },
+      {
+        "visitors": [
+          {
+            "uid": "EC3A3427-DB7D-9B42-043F-C87F95F5F9D3",
+            "color": 16297543
+          }
+        ],
+        "xpos": 483,
+        "created_on": 1403523164917,
+        "ypos": 538,
+        "interactions": [
+          {
+            "resource": {
+              "_id": "51b5e112c0acfed8bf000008",
+              "type": "none"
+            },
+            "finished_on": 1403523170778,
+            "created_on": 1403523168538,
+            "action": {
+              "_id": "52428b215f79f80e37000011",
+              "type": "talk"
+            }
+          }
+        ]
+      },
+      {
+        "visitors": [
+          {
+            "uid": "0901EF9F-A582-9F81-5726-C87F95F5DAE4",
+            "color": 3386591
+          },
+          {
+            "uid": "15EA80A2-A124-C222-F4E7-C87F95F55B39",
+            "color": 9225032
+          },
+          {
+            "uid": "EC3A3427-DB7D-9B42-043F-C87F95F5F9D3",
+            "color": 16297543
+          }
+        ],
+        "created_on": 1403523170778,
+        "xpos": 942,
+        "startpoint_id": "97166cc4-8e3e-1538-7280-84bd5cb86e21",
+        "ypos": 242,
+        "interactions": [
+          {
+            "finished_on": 1403523170778,
+            "resource": {
+              "_id": "51b5e112c0acfed8bf000008",
+              "type": "NONE"
+            },
+            "created_on": 1403523170778,
+            "action": {
+              "_id": "51b5e0dcc0acfeaab2000004",
+              "type": "STOP"
+            }
+          }
+        ]
+      }
+    ],
+    "finished_on": 1403523173825,
+    "created_on": 1403523142326,
+    "storage": {
+      "url": "http://net.engagelab.iobserveservice.s3.amazonaws.com/896a5923-841b-4095-b0c9-4a46efb91ee1.png",
+      "_id": "52e648bdc67e12b714000008",
+      "sessionob_id": "C3C4DC97-CC9D-362A-C5CD-C87F92B6EDEB",
+      "s3id": "896a5923-841b-4095-b0c9-4a46efb91ee1.png",
+      "name": "Salle31_visitracker.png"
+    },
+    "visitorgroup": {
+      "visitors": [
+        {
+          "uid": "0901EF9F-A582-9F81-5726-C87F95F5DAE4",
+          "sex": "Male",
+          "created_on": 1403523143157,
+          "color": 3386591,
+          "nationality": "Norwegian",
+          "age": "Adult"
+        },
+        {
+          "uid": "15EA80A2-A124-C222-F4E7-C87F95F55B39",
+          "sex": "Male",
+          "created_on": 1403523143157,
+          "color": 9225032,
+          "nationality": "Norwegian",
+          "age": "Adult"
+        },
+        {
+          "uid": "EC3A3427-DB7D-9B42-043F-C87F95F5F9D3",
+          "sex": "Male",
+          "created_on": 1403523143157,
+          "color": 16297543,
+          "nationality": "Norwegian",
+          "age": "Adult"
+        }
+      ],
+      "comment": "",
+      "created_on": 1403523143157
+    },
+    "spaceId": "52e64c96c67e12f62500000f",
+    "id": "C3C4DC97-CC9D-362A-C5CD-C87F92B6EDEB",
+    "room": {
+      "created_on": 1376049506,
+      "uri": "http://net.engagelab.iobserveservice.s3.amazonaws.com/0e419f9a-fd82-4d66-b76a-7de72b2c38bb.jpg",
+      "_id": "5204d9620ac19cfcae00000d",
+      "label": "98e2025a-99aa-98b3-5589-e76c6d05ee23",
+      "position": null,
+      "start_points": [
+        {
+          "label": "staircase",
+          "xpos": 951,
+          "uuid": "78855a42-1b3d-d960-9288-005041a57aa3",
+          "rotation": 270,
+          "ypos": 330
+        }
+      ],
+      "space_ids": [
+        "5204cdfe0ac19c5585000004"
+      ],
+      "end_points": [
+        {
+          "label": "munch gallery",
+          "xpos": 942,
+          "uuid": "97166cc4-8e3e-1538-7280-84bd5cb86e21",
+          "rotation": 270,
+          "ypos": 242
+        }
+      ]
+    }
+  }
+]

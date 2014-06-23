@@ -169,6 +169,63 @@ class Iobserve < Sinatra::Application
     end
   end
 
+  ### Construct an entire event-tracked session from iPad's submission
+  put '/sessionparser' do
+    if authorized?
+      content_type :json
+      data = JSON.parse request.body.read
+      data = data[0]
+
+      unless data.nil?
+        status 200
+        space = Space.find(data['spaceId'])
+        new_session = Sessionob.create(:created_on => data['created_on'], :finished_on => data['finished_on'])
+        new_visitor_group = Visitorgroup.create(:created_on => data['visitorgroup']['created_on'])
+        visitor_hash = Hash.new
+
+        # Insert visitor demographics
+        data['visitorgroup']['visitors'].each do|visitor|
+          new_visitor = Visitor.create(:sex => visitor['sex'], :color => visitor['color'], :nationality => visitor['nationality'], :age => visitor['age'], :created_on => visitor['created_on'])
+          new_visitor_group.visitors << new_visitor
+          visitor_hash[visitor['uid']] = new_visitor
+          new_visitor.save
+        end
+
+        # Create Events and Interactions
+        data['events'].each do|event|
+          new_event = Eventob.create(:created_on => event['created_on'], :finished_on => event['interactions'].last['finished_on'], :xpos => event['xpos'], :ypos => event['ypos'])
+          event['interactions'].each do|interaction|
+            new_interaction = Interaction.create(:created_on => interaction['created_on'], :finished_on => interaction['finished_on'])
+            event['visitors'].each do|visitor|
+              new_interaction.visitors << visitor_hash[visitor['uid']]
+            end
+            action = Action.without(:interaction_ids).find(interaction['action']['_id'])
+            resource = Resource.without(:interaction_ids).find(interaction['resource']['_id'])
+            new_interaction.actions << action
+            new_interaction.resources << resource
+            new_event.interactions << new_interaction
+            new_interaction.save
+          end
+          new_session.eventobs << new_event
+          new_event.save
+        end
+
+        # Update storage reference to point to this new session
+        storage = Storage.find(data['storage']['_id'])
+        new_session.storage = storage
+
+        new_session.visitorgroup = new_visitor_group
+        new_visitor_group.save
+        new_session.room_id = data['room']['_id']
+        space.sessionobs << new_session
+        new_session.save
+        space.save
+      end
+
+
+    end
+  end
+
 
   ### update session's properties
   put '/session/:session_id/:map_id/close' do
