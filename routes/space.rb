@@ -18,9 +18,15 @@ class Iobserve < Sinatra::Application
       #user = User.without(:created_on, :email, :first_name, :last_name, :password_hash, :password_salt).find(params[:user_id])
       #return user.spaces.to_json(:only => [ :_id, :created_on, :sessionobs, :sessionob_ids ])
 
-      user = User.only(:spaces, :space_ids).find(params[:user_id])
-      return user.spaces.to_json
-
+      user = User.without(:sessionobs, :sessionob_ids).find(params[:user_id])
+      spaces = user.spaces
+      myspace = []
+      spaces.each do|space|
+        new_space = {:_id => space._id, :actions => space.actions, :resources => space.resources, :created_on => space.created_on, :label => space.label, :room_ids => space.room_ids, :rooms => space.rooms, :surveys => space.surveys, :user_ids => space.user_ids}
+        myspace << new_space
+      end
+      #user.spaces.to_json
+      myspace.to_json
     else
       status 401
     end
