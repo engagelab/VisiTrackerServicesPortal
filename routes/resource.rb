@@ -1,6 +1,6 @@
 class Iobserve < Sinatra::Application
   ######################## Action ##################################
-#  ### create an resource
+  ### create an resource
   post '/resource' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -35,19 +35,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-
   ### list all resources
-  get '/resource' do
-    if authorized?
-      content_type :json
-      @resource = Resource.order_by(:_id.asc).all()
-      return @resource.to_json
-    else
-      status 401
-    end
-  end
-
-#  ### list all resources
   get '/resource/simple' do
     if authorized?
       content_type :json
@@ -57,18 +45,6 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
-
-  ###  get a resource by id
-  get '/resource/:resource_id' do
-    if authorized?
-      content_type :json
-      resource = Resource.find(params[:resource_id])
-      return resource.to_json
-    else
-      status 401
-    end
-  end
-
 
   ### update resource's properties
   put '/resource' do

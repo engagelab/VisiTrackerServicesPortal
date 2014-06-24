@@ -1,6 +1,6 @@
 class Iobserve < Sinatra::Application
   ######################## Action ##################################
-#  ### create an action
+  ### create an action
   post '/action' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -35,19 +35,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-
   ### list all actions
-  get '/action' do
-    if authorized?
-      content_type :json
-      @action = Action.order_by(:type.asc).all()
-      return @action.to_json
-    else
-      status 401
-    end
-  end
-
-#  ### list all actions
   get '/action/simple' do
     if authorized?
       content_type :json
@@ -57,18 +45,6 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
-
-  ###  get a action by id
-  get '/action/:action_id' do
-    if authorised?
-      content_type :json
-      action = Action.find(params[:action_id])
-      return action.to_json
-    else
-      status 401
-    end
-  end
-
 
   ### update action's properties
   put '/action' do

@@ -1,27 +1,7 @@
 class Iobserve < Sinatra::Application
   ######################## Session ##################################
-  ### create a session by space id
-  #post '/space/:space_id/session' do
-  #  request.body.rewind  # in case someone already read it
-  #  content_type :json
-  #
-  #  begin
-  #    space = Space.find(params[:space_id])
-  #  end
-  #
-  #  unless space.nil? then
-  #    sessionob = Sessionob.create(:created_on => Time.now.to_i)
-  #    visitorgroup = Visitorgroup.create(:created_on => Time.now.to_i)
-  #    sessionob.visitorgroup = visitorgroup
-  #    space.sessionobs << sessionob
-  #    space.save
-  #    return sessionob.to_json
-  #  else
-  #    status 404
-  #    return {"message" => "Space not found"}.to_json
-  # end
-  #end
 
+=begin
   post '/space/:space_id/:room_id/session' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -48,17 +28,7 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
-
-  ### list all sessions
-  get '/session' do
-    if authorized?
-      content_type :json
-      @sessionob = Sessionob.all()
-      return @sessionob.to_json
-    else
-      status 401
-    end
-  end
+=end
 
   ### list all unfinished sessions
   get '/unfinishedsessions' do
@@ -86,33 +56,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### list all sessions by space id
-  ### mongoId is retrieving nested relations. 'includes' is used to prevent possible second hit on database
-  get '/space/:space_id/session' do
-    if authorized?
-      content_type :json
-      space = Space.includes(:sessionobs).find(params[:space_id])
-      space.sessionobs.to_json
-    else
-      status 401
-    end
-  end
-
-
-  ### list all sessions by space id and room id
-=begin
-  get '/space/:space_id/:room_id/session' do
-    if authorized?
-      content_type :json
-      sessions = Sessionob.where(:room_id => params[:room_id]).in(:space_ids => params[:space_id])
-      sessions.to_json
-    else
-      status 401
-    end
-  end
-=end
-
-#  ### list all sessions by space id  and room id for portal
+  ### list all sessions by space id  and room id for portal
   get '/space/:space_id/:room_id/session' do
     if authorized?
       content_type :json
@@ -123,7 +67,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-#  ### list all sessions by space id  and room id
+  ### list all sessions by space id  and room id
   get '/space/:space_id/:room_id/basicSession' do
     if authorized?
       content_type :json
@@ -134,7 +78,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-#  ###  get a session by id
+  ###  get a session by id
   get '/session/:session_id' do
     if authorized?
       content_type :json
@@ -146,6 +90,7 @@ class Iobserve < Sinatra::Application
   end
 
   ### update session's properties
+=begin
   put '/session' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -170,6 +115,7 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
   ### Construct an entire event-tracked session from iPad's submission
   put '/sessionparser' do
@@ -233,8 +179,8 @@ class Iobserve < Sinatra::Application
     end
   end
 
-
   ### update session's properties
+=begin
   put '/session/:session_id/:map_id/close' do
     if authorized?
       content_type :json
@@ -258,8 +204,10 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
   ### delete a session by id
+=begin
   delete '/session/:session_id' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -314,4 +262,5 @@ class Iobserve < Sinatra::Application
      status 401
     end
   end
+=end
 end

@@ -11,7 +11,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-#  ### list all spaces by user id
+  ### list all spaces by user id
   get '/user/:user_id/space' do
     if authorized?
       content_type :json
@@ -28,7 +28,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-#  ### get lists of actions and resources for a space
+  ### get lists of actions and resources for a space
   get '/space/:space_id/actionresourcelist' do
     if authorized?
       content_type :json
@@ -46,23 +46,6 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### list all spaces by user id for portal
-=begin
-  get '/portal/user/:user_id/space' do
-    if authorized?
-      content_type :json
-      #user = User.without(:created_on, :email, :first_name, :last_name, :password_hash, :password_salt).find(params[:user_id])
-      #return user.spaces.to_json(:only => [ :_id, :created_on, :sessionobs, :sessionob_ids ])
-
-      user = User.only(:spaces, :space_ids).find(params[:user_id])
-      user.spaces.to_json(:only => [ :_id, :created_on, :label, :room_ids, :session_ids ])
-
-    else
-      status 401
-    end
-  end
-=end
-
   ###  get a space by id
   get '/space/:space_id' do
     if authorized?
@@ -74,7 +57,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-#  ### create a space by user id
+  ### create a space by user id
   post '/user/:user_id/space' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -85,17 +68,17 @@ class Iobserve < Sinatra::Application
         user = User.without(:password).find(params[:user_id])
         space = Space.create(:label => data['label'], :created_on => Time.now.to_i)
 
-        startAction = Action.without(:interaction_ids).where(type: "START").first
-        space.actions << {:_id => startAction._id, :type => startAction.type }
-        stopAction = Action.without(:interaction_ids).where(type: "STOP").first
-        space.actions << {:_id => stopAction._id, :type => stopAction.type }
+        startaction = Action.without(:interaction_ids).where(type: "START").first
+        space.actions << {:_id => startaction._id, :type => startaction.type }
+        stopaction = Action.without(:interaction_ids).where(type: "STOP").first
+        space.actions << {:_id => stopaction._id, :type => stopaction.type }
 
-        noneResource = Resource.without(:interaction_ids).where(type: "NONE").first
-        space.resources << {:_id => noneResource._id, :type => noneResource.type }
+        noneresource = Resource.without(:interaction_ids).where(type: "NONE").first
+        space.resources << {:_id => noneresource._id, :type => noneresource.type }
 
         user.spaces << space
         user.save
-        return user.to_json
+        user.to_json
       end
     else
       status 401
@@ -103,6 +86,7 @@ class Iobserve < Sinatra::Application
   end
 
   ### add exisiting space to user by id
+=begin
   post '/user/:user_id/space/:space_id' do
     if authorized?
       content_type :json
@@ -126,9 +110,11 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
 
   ### update space's properties
+=begin
   put '/space' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -153,8 +139,9 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
-#  ### add space's available actions
+  ### add space's available actions
   put '/space/action' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -183,29 +170,29 @@ class Iobserve < Sinatra::Application
     end
   end
 
-#  ### add space's available resources
+  ### add space's available resources
   put '/space/resource' do
     if authorized?
       request.body.rewind  # in case someone already read it
       content_type :json;
       data = JSON.parse request.body.read
 
-      unless data.nil? or (data['_id'].nil? and data['resources'].nil?) then
+      unless data.nil? or (data['_id'].nil? and data['resources'].nil?)
         space = Space.find(data['_id'])
 
         unless space.nil? then
-          resourcesArray = data['resources']
+          resourcesarray = data['resources']
 
-          if resourcesArray.kind_of?(Array)
-            space.resources = resourcesArray
+          if resourcesarray.kind_of?(Array)
+            space.resources = resourcesarray
             space.save
           end
         end
 
-        return space.to_json
+        space.to_json
       else
         status 404
-        return {"message" => "Provide _id and actions"}.to_json
+        {"message" => "Provide _id and actions"}.to_json
       end
     else
       status 401
@@ -213,7 +200,7 @@ class Iobserve < Sinatra::Application
   end
 
 
-#  ### delete a space by id
+  ### delete a space by id
   delete '/space/:space_id' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -263,7 +250,6 @@ class Iobserve < Sinatra::Application
           sessionob.destroy
 
         end
-
 
         unless space.user_ids.nil? then
           space.user_ids.each do|userId|

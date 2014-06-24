@@ -1,5 +1,5 @@
 class Iobserve < Sinatra::Application
-#  ######################## Survey ##################################
+  ######################## Survey ##################################
   post '/space/:space_id/survey' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -35,7 +35,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-#  ##### Create a new question for this survey #####
+  ##### Create a new question for this survey #####
   post '/survey/:survey_id/question' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -74,6 +74,7 @@ class Iobserve < Sinatra::Application
   end
 
   ##### Post an answer for this survey #####
+=begin
   post '/survey/:survey_id/answer' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -103,21 +104,9 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
-
-  ### list all surveys
-  get '/survey' do
-    if authorized?
-      content_type :json
-      @survey = Survey.all()
-      return @survey.to_json
-    else
-      status 401
-    end
-  end
-
-
-#  ### list all surveys by space id
+  ### list all surveys by space id
   get '/space/:space_id/survey' do
     if authorized?
       content_type :json
@@ -170,7 +159,7 @@ class Iobserve < Sinatra::Application
   end
 
 
-#  ### delete a question by id
+  ### delete a question by id
   delete '/question/:question_id' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -194,7 +183,7 @@ class Iobserve < Sinatra::Application
   end
 
 
-#  ### delete a survey by id
+  ### delete a survey by id
   delete '/survey/:survey_id' do
     if authorized?
       request.body.rewind  # in case someone already read it

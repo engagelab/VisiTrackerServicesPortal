@@ -22,7 +22,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-#  ### get user by id
+  ### get user by id
   get '/user/:id' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -47,7 +47,7 @@ class Iobserve < Sinatra::Application
   ######  Note that this call transmits password back to the user to enable auto-login after register.  requires review. ######
   #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-#  ### create a user aka 'register'
+  ### create a user aka 'register'
   post '/user' do
     request.body.rewind  # in case someone already read it
     content_type :json
