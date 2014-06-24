@@ -62,7 +62,7 @@ class Iobserve < Sinatra::Application
   end
 
 
-  ### list all events by session id
+#  ### list all events by session id
   get '/session/:session_id/events' do
     if authorized?
       content_type :json
@@ -76,6 +76,7 @@ class Iobserve < Sinatra::Application
   end
 
   ### list all events from all sessions by space id and room id
+=begin
   get '/space/:space_id/:room_id/events' do
     if authorized?
       content_type :json
@@ -95,9 +96,10 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
-  ### list all events from all sessions by space id and room id for portal
-  get '/portal/space/:space_id/:room_id/:startDT/:endDT/:type/events' do
+#  ### list all events from all sessions by space id and room id for portal
+  get '/space/:space_id/:room_id/:startDT/:endDT/:type/events' do
     if authorized?
       content_type :json
       min = params[:startDT].to_i

@@ -1,6 +1,6 @@
 class Iobserve < Sinatra::Application
   ######################## Action ##################################
-  ### create an resource
+#  ### create an resource
   post '/resource' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -47,7 +47,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### list all resources
+#  ### list all resources
   get '/resource/simple' do
     if authorized?
       content_type :json

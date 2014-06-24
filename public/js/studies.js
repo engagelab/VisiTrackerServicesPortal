@@ -41,7 +41,7 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
     $scope.currentSurvey = null;
     $scope.rooms = null;
     $scope.surveys = null;
-    $scope.sessions = null;
+//    $scope.sessions = null;
     $scope.roomLabel = "";
     $scope.studyToDelete = null;
     $scope.roomToDelete = null;
@@ -96,7 +96,6 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
 
     function initStudiesPage() {
         console.log("refreshing studies ....");
-        //$scope.studies = iObserveData.doGetStatsStudies();
         $scope.studies = iObserveData.doGetStudies();
         $scope.studies.then(function (response) {
             $scope.studies = response[0];
@@ -217,7 +216,7 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
                 $scope.isSpaceResourcesEmpty = false;
             }
         });
-    }
+    };
 
     //expand study
     $scope.expandStudy = function ($study, e) {
@@ -240,13 +239,14 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
         $scope.currentSelectedSurvey = null;
         $scope.refreshSurveys();
         $scope.rooms = $scope.currentStudy.rooms;
-        $scope.sessions = $scope.currentStudy.sessionobs;
+
+/*        $scope.sessions = $scope.currentStudy.sessionobs;
         // hide unfinished sessions from the result
         for (var k = 0; k < $scope.sessions.length; k++) {
             if ($scope.sessions[k].finished_on == null) {
                 $scope.sessions.splice(k, 1);
             }
-        }
+        }*/
 
         $scope.getActions();
         $scope.getResources();

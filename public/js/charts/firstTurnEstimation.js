@@ -18,10 +18,6 @@ iObserveApp.controller('ChartCtrl-firstTurnEstimation', function($scope, iObserv
                 var b = [$scope.eventCollection[e][1].xpos,$scope.eventCollection[e][1].ypos];
                 var c = [$scope.eventCollection[e][2].xpos,$scope.eventCollection[e][2].ypos];
 
-             //   var a = [0,-50];
-             //   var b = [50,50];
-             //   var c = [25,-50];
-
                 var notFound = true;
                 var searchIndex = 0;
                 while(notFound && searchIndex < $scope.currentRoom.start_points.length ) {
@@ -41,19 +37,6 @@ iObserveApp.controller('ChartCtrl-firstTurnEstimation', function($scope, iObserv
                 }
             }
         }
-        /*
-        for(var eachSeries=0; eachSeries<$scope.series.length; eachSeries++) {
-
-
-          //  var chartElement = angular.element("#chartFirstTurn");
-          //  var divElement = document.createElement('div');
-          //  divElement.id = '#chartFirstTurn-' + eachSeries;
-          //  chartElement.appendChild(divElement);
-
-
-            ngProgress.complete();
-        }
-        */
     };
 
     var requestData = function () {
@@ -211,9 +194,6 @@ iObserveApp.controller('ChartCtrl-firstTurnEstimation', function($scope, iObserv
                 lineAxes.append('svg:text')
                     .text(function(d,i){ return keys[i]; })
                     .attr("text-anchor", "middle")
-//      .attr("transform", function (d, i) {
-//          return (i / axis * 360) < 180 ? null : "rotate(90)";
-//      });
             }
 
             function drawBars(val, vizBody) {

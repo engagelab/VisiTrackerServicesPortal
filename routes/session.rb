@@ -100,6 +100,7 @@ class Iobserve < Sinatra::Application
 
 
   ### list all sessions by space id and room id
+=begin
   get '/space/:space_id/:room_id/session' do
     if authorized?
       content_type :json
@@ -109,9 +110,10 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
-  ### list all sessions by space id  and room id for portal
-  get '/portal/space/:space_id/:room_id/session' do
+#  ### list all sessions by space id  and room id for portal
+  get '/space/:space_id/:room_id/session' do
     if authorized?
       content_type :json
       sessions = Sessionob.where(:room_id => params[:room_id]).in(:space_ids => params[:space_id])
@@ -121,8 +123,8 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### list all sessions by space id  and room id
-  get '/portal/space/:space_id/:room_id/basicSession' do
+#  ### list all sessions by space id  and room id
+  get '/space/:space_id/:room_id/basicSession' do
     if authorized?
       content_type :json
       sessions = Sessionob.where(:room_id => params[:room_id]).in(:space_ids => params[:space_id])
@@ -132,7 +134,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ###  get a session by id
+#  ###  get a session by id
   get '/session/:session_id' do
     if authorized?
       content_type :json
@@ -177,10 +179,11 @@ class Iobserve < Sinatra::Application
       data = data[0]
 
       unless data.nil?
-        status 200
         space = Space.find(data['spaceId'])
-        new_session = Sessionob.create(:created_on => data['created_on'], :finished_on => data['finished_on'])
-        new_visitor_group = Visitorgroup.create(:created_on => data['visitorgroup']['created_on'])
+        session_created_on = data['created_on']/1000
+        session_finished_on = data['finished_on']/1000
+        new_session = Sessionob.create(:created_on => session_created_on, :finished_on => session_finished_on)
+        new_visitor_group = Visitorgroup.create()
         visitor_hash = Hash.new
 
         # Insert visitor demographics
@@ -193,9 +196,13 @@ class Iobserve < Sinatra::Application
 
         # Create Events and Interactions
         data['events'].each do|event|
-          new_event = Eventob.create(:created_on => event['created_on'], :finished_on => event['interactions'].last['finished_on'], :xpos => event['xpos'], :ypos => event['ypos'])
+          event_created_on = event['created_on']/1000
+          event_finished_on = event['interactions'].last['finished_on']/1000
+          new_event = Eventob.create(:created_on => event_created_on, :finished_on => event_finished_on, :xpos => event['xpos'], :ypos => event['ypos'])
           event['interactions'].each do|interaction|
-            new_interaction = Interaction.create(:created_on => interaction['created_on'], :finished_on => interaction['finished_on'])
+            interaction_created_on =interaction['created_on']/1000
+            interaction_finished_on = interaction['finished_on']/1000
+            new_interaction = Interaction.create(:created_on => interaction_created_on, :finished_on => interaction_finished_on)
             event['visitors'].each do|visitor|
               new_interaction.visitors << visitor_hash[visitor['uid']]
             end
@@ -220,8 +227,8 @@ class Iobserve < Sinatra::Application
         space.sessionobs << new_session
         new_session.save
         space.save
+        status 200
       end
-
 
     end
   end

@@ -69,17 +69,13 @@ iObserveApp.factory('iObserveData', function ($http, $q, iObserveConfig, iObserv
 
     // GET requests
     var requestSurveysForSpace = function(space_id) { return getData("/space/" + space_id + "/survey"); };
-    var requestEventsForSpaceAndRoom = function(space_id, room_id) { return getData("/space/" + space_id + "/" + room_id + "/events"); };
-    var requestStatEventsForSpaceAndRoom = function(space_id, room_id, startDT, endDT, type) { return getData("/portal/space/" + space_id + "/" + room_id + "/" + startDT + "/" + endDT + "/" + type + "/events"); };
-    var requestSessionsForSpaceAndRoom = function(space_id, room_id) { return getData("/space/" + space_id + "/" + room_id + "/session"); };
-    var requestBasicSessionsForSpaceAndRoom = function(space_id, room_id) { return getData("/portal/space/" + space_id + "/" + room_id + "/basicSession"); };
-    var requestStatSessionsForSpaceAndRoom = function(space_id, room_id) { return getData("/portal/space/" + space_id + "/" + room_id + "/session"); };
-    var requestRoomsForSpace = function(space_id) { return getData("/space/" + space_id + "/rooms"); };
-    var requestStatRoomsForSpace = function(space_id) { return getData("/portal/space/" + space_id + "/rooms"); };
+    var requestStatEventsForSpaceAndRoom = function(space_id, room_id, startDT, endDT, type) { return getData("/space/" + space_id + "/" + room_id + "/" + startDT + "/" + endDT + "/" + type + "/events"); };
+    var requestBasicSessionsForSpaceAndRoom = function(space_id, room_id) { return getData("/space/" + space_id + "/" + room_id + "/basicSession"); };
+    var requestStatSessionsForSpaceAndRoom = function(space_id, room_id) { return getData("/space/" + space_id + "/" + room_id + "/session"); };
+    var requestStatRoomsForSpace = function(space_id) { return getData("/space/" + space_id + "/rooms"); };
     var requestEventListObject = function(sessionID) { return getData("/session/" + sessionID + "/events"); };
     var requestSessionObject = function(sessionID) { return getData("/session/" + sessionID); };
     var requestStudyListObject = function() { return getData("/user/" + iObserveStorage.getItem('userId') + "/space"); };
-    var requestStatsStudyListObject = function() { return getData("/portal/user/" + iObserveStorage.getItem('userId') + "/space"); };
     var requestListActionsObject = function() { return getData("/action/simple"); };
     var requestListResourcesObject = function() { return getData("/resource/simple"); };
     var requestSessionsGroupDemographicsForSpaceAndRoom = function(space_id, room_id) { return getData("/portal/space/" + space_id + "/" + room_id + "/session/visitorgroupbysize"); };
@@ -105,7 +101,6 @@ iObserveApp.factory('iObserveData', function ($http, $q, iObserveConfig, iObserv
     var requestUpdateSpaceResourcesObject = function(data) { return putData("/space/resource", data); };
 
     // USER
-    // GET requests
     var requestUserLogout = function() { return getData('/logout')};
     var requestUserRegistration = function(data) { return postData('/user', data)};
     var requestUserProfile = function() { return getData('/user/'+iObserveStorage.getItem('userId'))};
@@ -115,14 +110,10 @@ iObserveApp.factory('iObserveData', function ($http, $q, iObserveConfig, iObserv
         doGetSession:requestSessionObject,
         goGetSurveysForSpace: requestSurveysForSpace,
         doGetEvents: requestEventListObject,
-        doGetSessionsForSpaceAndRoom: requestSessionsForSpaceAndRoom,
         doGetBasicSessionsForSpaceAndRoom: requestBasicSessionsForSpaceAndRoom,
         doGetStatSessionsForSpaceAndRoom: requestStatSessionsForSpaceAndRoom,
-        doGetEventsForSpaceAndRoom: requestEventsForSpaceAndRoom,
         doGetStatEventsForSpaceAndRoom: requestStatEventsForSpaceAndRoom,
         doGetStudies: requestStudyListObject,
-        doGetStatsStudies: requestStatsStudyListObject,
-        doGetRoomsForSpace: requestRoomsForSpace,
         doGetStatRoomsForSpace: requestStatRoomsForSpace,
         doGetSpaceActionsAndResourceList: requestSpaceActionsAndResourceList,
         doNewStudy: requestNewStudyObject,
@@ -341,7 +332,7 @@ iObserveApp.factory('iObserveUtilities', function ($http) {
             obj.content = data;
         });
         return obj;
-    }
+    };
 
     var getRandomUUID = function() {
         return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
@@ -351,7 +342,7 @@ iObserveApp.factory('iObserveUtilities', function ($http) {
         return Math.floor((1 + Math.random()) * 0x10000)
             .toString(16)
             .substring(1);
-    };
+    }
 
     var decColor2hex = function (color){
         // input:   (String) decimal color (i.e. 16711680)
@@ -364,7 +355,7 @@ iObserveApp.factory('iObserveUtilities', function ($http) {
         if(colorsUsed.indexOf(result) == -1)
             colorsUsed.push(result);
         return result;
-    }
+    };
 
     return {
         timeConverter : timeConverter,

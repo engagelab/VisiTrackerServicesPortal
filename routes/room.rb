@@ -1,6 +1,6 @@
 class Iobserve < Sinatra::Application
   ######################## Room ##################################
-  ### create a room by space id
+#  ### create a room by space id
   post '/space/:space_id/room' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -53,6 +53,7 @@ class Iobserve < Sinatra::Application
   end
 
   ### list all rooms by space id
+=begin
   get '/space/:space_id/rooms' do
     if authorized?
       content_type :json
@@ -62,13 +63,15 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
-  ### list all rooms by space id for portal
-  get '/portal/space/:space_id/rooms' do
+#  ### list all rooms by space id for portal
+  get '/space/:space_id/rooms' do
     if authorized?
       content_type :json
       space = Space.only(:rooms, :room_ids).find(params[:space_id])
-      return space.rooms.to_json(:only => [ :_id, :created_on, :label, :room_ids, :uri ])
+      # return space.rooms.to_json(:only => [ :_id, :created_on, :label, :room_ids, :uri ])
+      space.rooms.to_json
     else
       status 401
     end
@@ -131,7 +134,7 @@ class Iobserve < Sinatra::Application
   end
 
 
-  ### add room's end coordinates
+#  ### add room's end coordinates
   put '/room/endcoords' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -166,7 +169,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### add room's start coordinates
+#  ### add room's start coordinates
   put '/room/startcoords' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -250,7 +253,7 @@ class Iobserve < Sinatra::Application
 #   end
 #  end
 
-  ### delete a room by id
+#  ### delete a room by id
   delete '/room/:room_id' do
     if authorized?
       request.body.rewind  # in case someone already read it

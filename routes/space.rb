@@ -11,13 +11,10 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### list all spaces by user id
+#  ### list all spaces by user id
   get '/user/:user_id/space' do
     if authorized?
       content_type :json
-      #user = User.without(:created_on, :email, :first_name, :last_name, :password_hash, :password_salt).find(params[:user_id])
-      #return user.spaces.to_json(:only => [ :_id, :created_on, :sessionobs, :sessionob_ids ])
-
       user = User.without(:sessionobs, :sessionob_ids).find(params[:user_id])
       spaces = user.spaces
       myspace = []
@@ -25,14 +22,13 @@ class Iobserve < Sinatra::Application
         new_space = {:_id => space._id, :actions => space.actions, :resources => space.resources, :created_on => space.created_on, :label => space.label, :room_ids => space.room_ids, :rooms => space.rooms, :surveys => space.surveys, :user_ids => space.user_ids}
         myspace << new_space
       end
-      #user.spaces.to_json
       myspace.to_json
     else
       status 401
     end
   end
 
-  ### get lists of actions and resources for a space
+#  ### get lists of actions and resources for a space
   get '/space/:space_id/actionresourcelist' do
     if authorized?
       content_type :json
@@ -51,6 +47,7 @@ class Iobserve < Sinatra::Application
   end
 
   ### list all spaces by user id for portal
+=begin
   get '/portal/user/:user_id/space' do
     if authorized?
       content_type :json
@@ -64,6 +61,7 @@ class Iobserve < Sinatra::Application
       status 401
     end
   end
+=end
 
   ###  get a space by id
   get '/space/:space_id' do
@@ -76,7 +74,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### create a space by user id
+#  ### create a space by user id
   post '/user/:user_id/space' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -156,7 +154,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### add space's available actions
+#  ### add space's available actions
   put '/space/action' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -185,7 +183,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### add space's available resources
+#  ### add space's available resources
   put '/space/resource' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -215,7 +213,7 @@ class Iobserve < Sinatra::Application
   end
 
 
-  ### delete a space by id
+#  ### delete a space by id
   delete '/space/:space_id' do
     if authorized?
       request.body.rewind  # in case someone already read it

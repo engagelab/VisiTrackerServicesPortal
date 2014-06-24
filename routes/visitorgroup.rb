@@ -29,7 +29,7 @@ class Iobserve < Sinatra::Application
   end
 
 
-  ### list all events from all sessions by space id and room id  for portal
+#  ### list all events from all sessions by space id and room id  for portal
   get '/portal/space/:space_id/:room_id/session/visitorgroupbysize' do
     if authorized?
       content_type :json

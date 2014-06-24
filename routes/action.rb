@@ -1,6 +1,6 @@
 class Iobserve < Sinatra::Application
   ######################## Action ##################################
-  ### create an action
+#  ### create an action
   post '/action' do
     if authorized?
       request.body.rewind  # in case someone already read it
@@ -47,7 +47,7 @@ class Iobserve < Sinatra::Application
     end
   end
 
-  ### list all actions
+#  ### list all actions
   get '/action/simple' do
     if authorized?
       content_type :json

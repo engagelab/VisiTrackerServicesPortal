@@ -1,4 +1,4 @@
-iObserveApp.controller('StatisticsCtrl', function($scope, $http, $modal, iObserveUser, iObserveData, iObserveUtilities) {
+iObserveApp.controller('StatisticsCtrl', function($scope, $modal, iObserveUser, iObserveData, iObserveUtilities) {
     $scope.roomListRequested = false;
     $scope.roomListButton = 0;
     $scope.studyChartButton = 0;
@@ -16,7 +16,7 @@ iObserveApp.controller('StatisticsCtrl', function($scope, $http, $modal, iObserv
     $scope.chartList = iObserveUtilities.loadJSONFile("js/chartTypes.json");
     $scope.chartName = "";
     $scope.studies = [];
-    var studyPromise = iObserveData.doGetStatsStudies();
+    var studyPromise = iObserveData.doGetStudies();
     studyPromise.then(function (response) {
         $scope.studies = response[0];
     });
@@ -48,7 +48,7 @@ iObserveApp.controller('StatisticsCtrl', function($scope, $http, $modal, iObserv
         $('html, body').stop().animate({
             scrollTop: $("#statChartDiv").offset().top
         }, 1500);
-    }
+    };
 
     $scope.foldRooms = function($study, e) {
         $("button.btn").addClass("btn-info").removeClass("btn-success").removeClass("active");
@@ -70,7 +70,7 @@ iObserveApp.controller('StatisticsCtrl', function($scope, $http, $modal, iObserv
             else {
                 $scope.roomListRequested = true;
                 $scope.currentStudy = $study;
-                iObserveData.doGetRoomsForSpace($scope.currentStudy._id).then(function(resultData) {
+                iObserveData.doGetStatRoomsForSpace($scope.currentStudy._id).then(function(resultData) {
                     $scope.rooms = resultData[0];
                 })
             }
@@ -118,7 +118,6 @@ iObserveApp.controller('StatisticsCtrl', function($scope, $http, $modal, iObserv
                         $scope.showSessionList = true;
                 })
             }
-        //    $(angular.element(e.target)).parent().siblings().toggleClass('selected');
         }
         else {
             $scope.sessionListRequested = false;
@@ -206,10 +205,6 @@ iObserveApp.controller('StatisticsCtrl', function($scope, $http, $modal, iObserv
             }
         });
 
-  /*      modalInstance.result.then(function(command) {
-        }, function() {
-        });
-  */
     };
 
     $scope.setVisitorClass = function (visitorColor) {
@@ -218,7 +213,7 @@ iObserveApp.controller('StatisticsCtrl', function($scope, $http, $modal, iObserv
 
     $scope.getChartControllerName = function () {
         return "ChartCtrl-" + $scope.chartShortName;
-    }
+    };
 
     $scope.getInteraction = function(res) {
         if(res == "NONE") {
@@ -232,61 +227,3 @@ iObserveApp.controller('StatisticsCtrl', function($scope, $http, $modal, iObserv
 iObserveApp.controller('ImageDetailModalCtrl', function($scope, $modalInstance, currentSession) {
         $scope.currentSession = currentSession;
 });
-
-/*
-iObserveApp.controller('TestDialogController', ['$scope', function($scope, dialog, chartData) {
-    $scope.chartData = chartData;
-    $scope.close = function(result){
-        dialog.close(result);
-    };
-
-
-    function plotChart() {
-
-        ;
-    }
-    plotChart();
-}]);
-*/
-
-/*
-iObserveApp.directive('chartVisualization', function (iObserveCharting) {
-    return {
-        restrict: 'E',
-        replace: true,
-        template: '<div id="chartTemplateRootElement">' +
-                      '<form ng-submit="">' +
-                            'Select all <input type="checkbox" ng-model="chartControls.selectAll">' +
-                      '</form>' +
-                      '<div id="chart"></div>' +
-                  '</div>',
-        scope: {
-            val: '=val',
-            chartControls: '='
-        },
-        link: function (scope, element, attrs) {
-
-            var svg = d3.select("#chart")
-                .append("svg")
-                .attr("width", 100)
-                .attr("height", 100);
-
-            scope.$watch('val', function (newVal, oldVal) {
-                if (!newVal || newVal === oldVal) {
-                    return;
-                }
-                svg.selectAll('*').remove();
-                iObserveCharting.plotChart(newVal, svg);
-            });
-
-            scope.$watch('chartControls.selectAll', function (newVal, oldVal) {
-                if (newVal === oldVal) {
-                    return;
-                }
-                if (newVal)
-                    iObserveCharting.modifyChart("selectAllCircles", newVal, svg);
-            })
-        }
-    }
-});
-*/
