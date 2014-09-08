@@ -182,6 +182,26 @@ class Iobserve < Sinatra::Application
     end
   end
 
+  ### update session's properties
+  put '/surveyparser' do
+    if authorized?
+      request.body.rewind  # in case someone already read it
+      content_type :json;
+      data = JSON.parse request.body.read
+
+      unless data.nil? then
+
+        status 200
+        puts data
+
+      else
+        status 404
+        return {"message" => "Provide label"}.to_json
+      end
+    else
+      status 401
+    end
+  end
 
   ### delete a survey by id
   delete '/survey/:survey_id' do
