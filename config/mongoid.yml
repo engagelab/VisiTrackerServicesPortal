@@ -1,7 +1,7 @@
 development:
   sessions:
     default:
-      database: heroku_app15673847
+      database: iObserveService
       hosts:
         - localhost
       options:

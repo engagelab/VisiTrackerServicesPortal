@@ -1,361 +1,369 @@
 <div ng-controller="StudiesCtrl" id="studiesWrapper">
-    <div id="studyListHeader">
-        <h3>Studies</h3>
-        <button class="btn btn-info btn-xs" ng-click="toggleAddStudy()"><i id="addStudyButton" class="fa fa-plus"></i></button> New
-        <div collapse="isAddStudyCollapsed" class="collapsableStudyDiv">
-            <div class="innerCollapsableStudyDiv">
-                <input type="text" id="studyLabelInput" placeholder="Study label" style="margin-bottom: 0;">
-                <button class="btn btn-primary" ng-click="createNewStudy()">create</button>
+<div id="studyListHeader">
+    <h3>Studies</h3>
+    <button class="btn btn-info btn-xs" ng-click="toggleAddStudy()"><i id="addStudyButton" class="fa fa-plus"></i></button> New
+    <div collapse="isAddStudyCollapsed" class="collapsableStudyDiv">
+        <div class="innerCollapsableStudyDiv">
+            <input type="text" id="studyLabelInput" placeholder="Study label" style="margin-bottom: 0;">
+            <button class="btn btn-primary" ng-click="createNewStudy()">create</button>
+        </div>
+    </div>
+    <hr>
+</div>
+
+<br>
+<ul>
+    <li style="margin-bottom: 10px" class="studiesListItem" ng-repeat="study in studies">
+        <button class="btn btn-info btn-xs studynav" id="{{ study._id }}" ng-click="expandStudy(study, $event)" ng-model="expandStudyButton" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0"><i class="fa fa-folder-open"></i></button>
+        <button class="btn btn-danger btn-xs" ng-click="deleteStudy(study)"><i class="fa fa-times"></i></button>
+        <span><b> {{ study.label }} </b></span></br>
+        <span>Survey(s): <b>{{ study.surveys.length }}</b> | Session(s): <b>{{ study.sessionob_ids.length }}</b> | Room(s): <b>{{ study.room_ids.length }}</b></span>
+        <p>{{ timeConverter(study.created_on)}}</p>
+    </li>
+</ul>
+<div>
+    <script type="text/ng-template" id="StudiesDeleteStudyModalCtrl.html">
+        <div class="modal-header">
+            <h3>Delete study?</h3>
+        </div>
+        <div class="modal-body">
+            <p>Are you sure to delete this study?</p>
+            <p>Please note that all session data for this study will be also deleted.</p>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" ng-click="okDeleteStudy()">Ok</button>
+            <button class="btn btn-danger" ng-click="cancelDeleteStudy()">Cancel</button>
+        </div>
+    </script>
+</div>
+<br/>
+<div ng-show="isStudyChosen">
+<tabset>
+    <tab ng-repeat="tab in studyTabs" heading="{{tab.title}}" active="tab.active" select="studyTabs.activeTab = tab.tabindex" disabled="tab.disabled"></tab>
+</tabset>
+
+<div ng-switch on="studyTabs.activeTab">
+<div ng-switch-when="0">
+    <button class="btn btn-info btn-xs" ng-click="toggleAddSurvey()"><i id="addSurveyButton" class="fa fa-plus"></i></button> New &nbsp;
+    <div collapse="isAddSurveyCollapsed" class="collapsableStudyDiv">
+        <div class="innerCollapsableStudyDiv">
+            <input type="text" id="surveyLabelInput" placeholder="New survey label (optional)" style="margin-bottom: 0;">
+            <button class="btn btn-primary" ng-click="createNewSurvey()">create</button>
+        </div>
+    </div>
+    <div style="margin-top: 15px; float: left; position: relative; width: 100%">
+        <div style="min-height: 300px;float: left">
+            <select id="surveyList" size="2" style="width: 400px; min-height: 300px" ng-options="getFormattedSurvey(survey) for survey in surveys" ng-model="survey" ng-change="editSurvey(survey)"></select>
+        </div>
+        <div collapse="isSurveySelected">
+            <div style="float: left;margin-left: 20px">
+                <div style="min-height: 300px" id="surveyEditDiv">
+                    <p><b>Selected survey:</b></p>
+                    <button class="btn btn-danger btn-xs" ng-click="deleteSurvey(survey)"><i id="deleteSurveyButton" class="fa fa-minus"></i></button> Delete <br/><br/>
+                    <div>
+                        <script type="text/ng-template" id="StudiesDeleteSurveyModalCtrl.html">
+                            <div class="modal-header">
+                                <h3>Delete survey?</h3>
+                            </div>
+                            <div class="modal-body">
+                                <p>Are you sure to delete this survey?</p>
+                                <p>Please note that all data for this survey will be also deleted.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" ng-click="okDeleteSurvey()">Ok</button>
+                                <button class="btn btn-danger" ng-click="cancelDeleteSurvey()">Cancel</button>
+                            </div>
+                        </script>
+                    </div>
+
+                    <p ng-show="survey.locked" style="color: red;"><b>Answers submitted, survey is locked</b></p>
+                    <select ng-hide="survey.locked" ng-model="selectedSurvey.type" ng-options="i as i.text for i in surveytypes" ng-change="addSelectedQuestion(selectedSurvey.type)" ></select>
+                    <div id="quest-group">
+                        <br />
+                        <div ng-switch on="formItemType">
+                            <div ng-switch-when="TextField">
+                                <div style="display: block;float: left;width: 450px">
+                                    <span>Short Text</span>
+                                    <br />
+                                    <input type="text" ng-model="tfQuestion" placeholder="Question?" bs-typeahead="typeahead">
+                                    <pre>{{tfQuestion| json}}</pre>
+                                </div>
+                                <div style="clear: both">
+                                    <button class="btn btn-primary" ng-click="postFormItem(tfQuestion)">Add form item</button>
+                                </div>
+                            </div>
+                            <div ng-switch-when="TextArea">
+                                <div style="display: block;float: left;width: 450px">
+                                    <span>Long Text</span>
+                                    <br />
+                                    <input type="text" ng-model="taQuestion" placeholder="Question?" bs-typeahead="typeahead">
+                                    <pre>{{taQuestion| json}}</pre>
+                                </div>
+                                <div style="clear: both">
+                                    <button class="btn btn-primary" ng-click="postFormItem(taQuestion)">Add form item</button>
+                                </div>
+                            </div>
+                            <div ng-switch-when="RadioButtons">
+                                <div style="display: block;float: left;width: 450px">
+                                    <span>Single Choice or Ranking</span>
+                                    <br />
+                                    <input type="text" ng-model="rbQuestion" placeholder="Question?" bs-typeahead="typeahead">
+                                    <pre>{{rbQuestion| json}}</pre>
+                                </div>
+                                <div style="float: left;display: block;margin-left: 30px">
+                                    <div>
+                                        Choices:
+                                        <br />
+                                        <input id="formRadioButtonInput" type="text" ng-model="formRadioButtonsLabel" placeholder="Choice name" style="margin-bottom: 0; width: 100px">&nbsp;&nbsp;<button class="btn btn-primary" ng-click="addNewRadioButton(formRadioButtonsLabel)">Add</button>
+                                    </div>
+                                    <div style="margin-top: 10px">
+                                        <select size="2" ng-model="radioitem" style="height: 165px" ng-options="radioitem.label for radioitem in formRadioButtonsList" ></select>
+                                        <br />
+                                        <button style="width: 220px" class="btn btn-danger" ng-click="deleteRadioButton(radioitem)">Delete selected</button>
+                                    </div>
+                                </div>
+                                <div style="clear: both">
+                                    <button class="btn btn-primary" ng-click="postFormItem(rbQuestion)">Add form item</button>
+                                </div>
+                            </div>
+                            <div ng-switch-when="Checkboxes">
+                                <div style="display: block;float: left;width: 450px">
+                                    <span>Multiple Choice Checkboxes</span>
+                                    <br />
+                                    <input type="text" ng-model="cbQuestion" bs-typeahead="typeahead">
+                                    <pre>{{cbQuestion| json}}</pre>
+                                </div>
+                                <div style="float: left;display: block;margin-left: 30px">
+                                    <div>
+                                        Choices:
+                                        <br />
+                                        <input id="formCheckBoxButtonInput" type="text" ng-model="formCheckBoxButtonsLabel" placeholder="Choice name" style="margin-bottom: 0; width: 100px">&nbsp;&nbsp;<button class="btn btn-primary" ng-click="addNewCheckBoxButton(formCheckBoxButtonsLabel)">Add</button>
+                                    </div>
+                                    <div style="margin-top: 10px">
+                                        <select size="2" ng-model="checkboxitem" style="height: 165px" ng-options="checkboxitem.label for checkboxitem in formCheckBoxButtonsList" ></select>
+                                        <br />
+                                        <button style="width: 220px" class="btn btn-danger" ng-click="deleteCheckBoxButton(checkboxitem)">Delete selected</button>
+                                    </div>
+                                </div>
+                                <div style="clear: both">
+                                    <button class="btn btn-primary" ng-click="postFormItem(cbQuestion)">Add form item</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <hr>
+
+        <div style="float: left; position: relative;width: 100%">
+            <br />
+            <div class="alert alert-info">
+                <p><span style="text-decoration: underline">Survey Label:</span> {{ currentSelectedSurvey.label }}</p>
+                <!--p><span style="text-decoration: underline">Survey ID:</span> {{ currentSelectedSurvey._id }}</p-->
+                <p><span style="text-decoration: underline">Questions:</span></p>
+                <ul style="width: 100%">
+                    <li style="margin-bottom: 10px" class="studiesListItem" ng-repeat="question in currentSelectedSurvey.questions"><button class="btn btn-danger btn-xs" ng-disabled="survey.locked" ng-click="deleteQuestion(question._id)"><i class="fa fa-remove"></i></button>&nbsp;&nbsp; <b>{{ question.label }}</b> | Options: ({{ getFormattedQuestionOptions(question.options) }}) | Type: ({{ getFormattedSurveyType(question.type) }})</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-switch-when="1">
+    <button class="btn btn-info btn-xs" ng-click="toggleAddSpace()"><i id="addSpaceButton" class="fa fa-plus"></i></button> New &nbsp; </br></br>
+    <p><b>Selected room:</b></p>
+    <div style="margin-left: 60px">
+        <button class="btn btn-xs" ng-click="openActionModal()"><i class="fa fa-star"></i></button> Actions &nbsp;
+        <button class="btn btn-xs" ng-click="openResourceModal()"><i class="fa fa-star"></i></button> Resources &nbsp;
+        <button class="btn btn-danger btn-xs" ng-click="roomToDelete=room;openDeleteRoomModal()"><i class="fa fa-minus"></i></button> Delete
     </div>
 
-    <br>
-    <ul>
-        <li style="margin-bottom: 10px" class="studiesListItem" ng-repeat="study in studies">
-            <button class="btn btn-info btn-xs studynav" id="{{ study._id }}" ng-click="expandStudy(study, $event)" ng-model="expandStudyButton" btn-checkbox btn-checkbox-true="1" btn-checkbox-false="0"><i class="fa fa-folder-open"></i></button>
-            <button class="btn btn-danger btn-xs" ng-click="deleteStudy(study)"><i class="fa fa-times"></i></button>
-            <span><b> {{ study.label }} </b></span></br>
-            <span>Survey(s): <b>{{ study.surveys.length }}</b> | Session(s): <b>{{ study.sessionob_ids.length }}</b> | Room(s): <b>{{ study.room_ids.length }}</b></span>
-            <p>{{ timeConverter(study.created_on)}}</p>
-        </li>
-    </ul>
     <div>
-        <script type="text/ng-template" id="StudiesDeleteStudyModalCtrl.html">
+        <script type="text/ng-template" id="StudiesActionsModalCtrl.html">
             <div class="modal-header">
-                <h3>Delete study?</h3>
+                <h3>Actions</h3>
             </div>
-            <div class="modal-body">
-                <p>Are you sure to delete this study?</p>
-                <p>Please note that all session data for this study will be also deleted.</p>
+            <div style="margin-left: 15px;margin-right: 15px">
+                <div style="float: left; height: 300px;min-width: 120px; max-width: 180px">
+                    <h5>All actions <button class="btn btn-xs" ng-click="isAddActionCollapsed = !isAddActionCollapsed"><i class="fa fa-plus"></i></button></h5>
+                    <div collapse="isAddActionCollapsed" style="margin-bottom: 10px">
+                        <input type="text" id="actionLabelInput" placeholder="Action name" style="margin-bottom: 0; width: 100px">
+                        <button class="btn btn-primary" ng-click="isAddActionCollapsed=true;createNewAction()">OK</button>
+                    </div>
+                    <select id="allActionsList" size="2" multiple="false" style="height: 230px;min-width: 120px; max-width: 180px">
+                        <option ng-repeat="action in allActions" value="action._id">{{ action.type }}</option>
+                    </select>
+                </div>
+                <div style="float: left; margin-top: 150px; margin-left: 10px; margin-right: 10px">
+                    <button ng-click="removeActionFromSpace()"><i class="fa fa-arrow-left"></i></button>
+                    <button ng-click="addActionToSpace()"><i class="fa fa-arrow-right"></i></button>
+                </div>
+                <div style="float: left; height: 300px; min-width: 120px; max-width: 180px">
+                    <h5>Selected actions</h5>
+                    <select id="spaceActionsList" size="2" multiple="false" style="height: 230px;margin-top: 10px;min-width: 120px; max-width: 180px">
+                        <option ng-repeat="action in spaceActions" value="action._id">{{ action.type }}</option>
+                    </select>
+                </div>
+                <div style="float: left; margin-top: 150px; margin-left: 10px; margin-right: 10px">
+                    <button ng-click="moveActionUp()()"><i class="fa fa-arrow-up"></i></button>
+                    <button ng-click="moveActionDown()"><i class="fa fa-arrow-down"></i></button>
+                </div>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-primary" ng-click="okDeleteStudy()">Ok</button>
-                <button class="btn btn-danger" ng-click="cancelDeleteStudy()">Cancel</button>
+                <button class="btn btn-primary" ng-click="closeAndSaveSpaceActions()">Save</button>
+                <button class="btn btn-danger" ng-click="closeSpaceActions()">Cancel</button>
             </div>
         </script>
     </div>
-    <br/>
-    <div ng-show="isStudyChosen">
-        <tabset>
-            <tab ng-repeat="tab in studyTabs" heading="{{tab.title}}" active="tab.active" select="studyTabs.activeTab = tab.tabindex" disabled="tab.disabled"></tab>
-        </tabset>
 
-        <div ng-switch on="studyTabs.activeTab">
-            <div ng-switch-when="0">
-                <button class="btn btn-info btn-xs" ng-click="toggleAddSurvey()"><i id="addSurveyButton" class="fa fa-plus"></i></button> New &nbsp;
-                <div collapse="isAddSurveyCollapsed" class="collapsableStudyDiv">
-                    <div class="innerCollapsableStudyDiv">
-                        <input type="text" id="surveyLabelInput" placeholder="New survey label (optional)" style="margin-bottom: 0;">
-                        <button class="btn btn-primary" ng-click="createNewSurvey()">create</button>
+    <div>
+        <script type="text/ng-template" id="StudiesResourcesModalCtrl.html">
+            <div class="modal-header">
+                <h3>Resources</h3>
+            </div>
+            <div style="margin-left: 15px;margin-right: 15px">
+                <div style="float: left; height: 300px;min-width: 120px; max-width: 180px">
+                    <h5>All resources <button class="btn btn-xs" ng-click="isAddResourceCollapsed = !isAddResourceCollapsed"><i class="fa fa-plus"></i></button></h5>
+                    <div collapse="isAddResourceCollapsed" style="margin-bottom: 10px">
+                        <input type="text" id="resourceLabelInput" placeholder="Resource name" style="margin-bottom: 0; width: 100px">
+                        <button class="btn btn-primary" ng-click="isAddResourceCollapsed=true;createNewResource()">OK</button>
                     </div>
+                    <select id="allResourcesList" multiple="false" size="2" style="height: 230px;min-width: 120px; max-width: 180px">
+                        <option ng-repeat="resource in allResources" value="resource._id">{{ resource.type }}</option>
+                    </select>
                 </div>
-                <div style="margin-top: 15px; float: left; position: relative; width: 100%">
-                    <div style="min-height: 300px;float: left">
-                        <select id="surveyList" size="2" style="width: 400px; min-height: 300px" ng-options="getFormattedSurvey(survey) for survey in surveys" ng-model="survey" ng-change="editSurvey(survey)"></select>
-                    </div>
-                    <div collapse="isSurveySelected">
-                        <div style="float: left;margin-left: 20px">
-                            <div style="min-height: 300px" id="surveyEditDiv">
-                                <p><b>Selected survey:</b></p>
-                                <button class="btn btn-danger btn-xs" ng-click="deleteSurvey(survey)"><i id="deleteSurveyButton" class="fa fa-minus"></i></button> Delete <br/><br/>
-                                <div>
-                                    <script type="text/ng-template" id="StudiesDeleteSurveyModalCtrl.html">
-                                        <div class="modal-header">
-                                            <h3>Delete survey?</h3>
-                                        </div>
-                                        <div class="modal-body">
-                                            <p>Are you sure to delete this survey?</p>
-                                            <p>Please note that all data for this survey will be also deleted.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-primary" ng-click="okDeleteSurvey()">Ok</button>
-                                            <button class="btn btn-danger" ng-click="cancelDeleteSurvey()">Cancel</button>
-                                        </div>
-                                    </script>
-                                </div>
-
-                                <p ng-show="survey.locked" style="color: red;"><b>Answers submitted, survey is locked</b></p>
-                                <select ng-hide="survey.locked" ng-model="selectedSurvey.type" ng-options="i as i.text for i in surveytypes" ng-change="addSelectedQuestion(selectedSurvey.type)" ></select>
-                                <div id="quest-group">
-                                    <br />
-                                    <div ng-switch on="formItemType">
-                                        <div ng-switch-when="TextField">
-                                            <div style="display: block;float: left;width: 450px">
-                                                <span>Short Text</span>
-                                                <br />
-                                                <input type="text" ng-model="tfQuestion" placeholder="Question?" bs-typeahead="typeahead">
-                                                <pre>{{tfQuestion| json}}</pre>
-                                            </div>
-                                            <div style="clear: both">
-                                                <button class="btn btn-primary" ng-click="postFormItem(tfQuestion)">Add form item</button>
-                                            </div>
-                                        </div>
-                                        <div ng-switch-when="TextArea">
-                                            <div style="display: block;float: left;width: 450px">
-                                                <span>Long Text</span>
-                                                <br />
-                                                <input type="text" ng-model="taQuestion" placeholder="Question?" bs-typeahead="typeahead">
-                                                <pre>{{taQuestion| json}}</pre>
-                                            </div>
-                                            <div style="clear: both">
-                                                <button class="btn btn-primary" ng-click="postFormItem(taQuestion)">Add form item</button>
-                                            </div>
-                                        </div>
-                                        <div ng-switch-when="RadioButtons">
-                                            <div style="display: block;float: left;width: 450px">
-                                                <span>Single Choice or Ranking</span>
-                                                <br />
-                                                <input type="text" ng-model="rbQuestion" placeholder="Question?" bs-typeahead="typeahead">
-                                                <pre>{{rbQuestion| json}}</pre>
-                                            </div>
-                                            <div style="float: left;display: block;margin-left: 30px">
-                                                <div>
-                                                    Choices:
-                                                    <br />
-                                                    <input id="formRadioButtonInput" type="text" ng-model="formRadioButtonsLabel" placeholder="Choice name" style="margin-bottom: 0; width: 100px">&nbsp;&nbsp;<button class="btn btn-primary" ng-click="addNewRadioButton(formRadioButtonsLabel)">Add</button>
-                                                </div>
-                                                <div style="margin-top: 10px">
-                                                    <select size="2" ng-model="radioitem" style="height: 165px" ng-options="radioitem.label for radioitem in formRadioButtonsList" ></select>
-                                                    <br />
-                                                    <button style="width: 220px" class="btn btn-danger" ng-click="deleteRadioButton(radioitem)">Delete selected</button>
-                                                </div>
-                                            </div>
-                                            <div style="clear: both">
-                                                <button class="btn btn-primary" ng-click="postFormItem(rbQuestion)">Add form item</button>
-                                            </div>
-                                        </div>
-                                        <div ng-switch-when="Checkboxes">
-                                            <div style="display: block;float: left;width: 450px">
-                                                <span>Multiple Choice Checkboxes</span>
-                                                <br />
-                                                <input type="text" ng-model="cbQuestion" bs-typeahead="typeahead">
-                                                <pre>{{cbQuestion| json}}</pre>
-                                            </div>
-                                            <div style="float: left;display: block;margin-left: 30px">
-                                                <div>
-                                                    Choices:
-                                                    <br />
-                                                    <input id="formCheckBoxButtonInput" type="text" ng-model="formCheckBoxButtonsLabel" placeholder="Choice name" style="margin-bottom: 0; width: 100px">&nbsp;&nbsp;<button class="btn btn-primary" ng-click="addNewCheckBoxButton(formCheckBoxButtonsLabel)">Add</button>
-                                                </div>
-                                                <div style="margin-top: 10px">
-                                                    <select size="2" ng-model="checkboxitem" style="height: 165px" ng-options="checkboxitem.label for checkboxitem in formCheckBoxButtonsList" ></select>
-                                                    <br />
-                                                    <button style="width: 220px" class="btn btn-danger" ng-click="deleteCheckBoxButton(checkboxitem)">Delete selected</button>
-                                                </div>
-                                            </div>
-                                            <div style="clear: both">
-                                                <button class="btn btn-primary" ng-click="postFormItem(cbQuestion)">Add form item</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div style="float: left; position: relative;width: 100%">
-                        <br />
-                        <div class="alert alert-info">
-                            <p><span style="text-decoration: underline">Survey Label:</span> {{ currentSelectedSurvey.label }}</p>
-                            <!--p><span style="text-decoration: underline">Survey ID:</span> {{ currentSelectedSurvey._id }}</p-->
-                            <p><span style="text-decoration: underline">Questions:</span></p>
-                            <ul style="width: 100%">
-                                <li style="margin-bottom: 10px" class="studiesListItem" ng-repeat="question in currentSelectedSurvey.questions"><button class="btn btn-danger btn-xs" ng-disabled="survey.locked" ng-click="deleteQuestion(question._id)"><i class="fa fa-remove"></i></button>&nbsp;&nbsp; <b>{{ question.label }}</b> | Options: ({{ getFormattedQuestionOptions(question.options) }}) | Type: ({{ getFormattedSurveyType(question.type) }})</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div style="float: left; margin-top: 150px; margin-left: 10px; margin-right: 10px">
+                    <button ng-click="removeResourceFromSpace()"><i class="fa fa-arrow-left"></i></button>
+                    <button ng-click="addResourceToSpace()"><i class="fa fa-arrow-right"></i></button>
+                </div>
+                <div style="float: left; height: 300px; min-width: 120px; max-width: 180px">
+                    <h5>Selected resources</h5>
+                    <select id="spaceResourcesList" multiple="false" size="2" style="height: 230px;margin-top: 10px;min-width: 120px; max-width: 180px">
+                        <option ng-repeat="resource in spaceResources" value="resource._id">{{ resource.type }}</option>
+                    </select>
+                </div>
+                <div style="float: left; margin-top: 150px; margin-left: 10px; margin-right: 10px">
+                    <button ng-click="moveResourceUp()"><i class="fa fa-arrow-up"></i></button>
+                    <button ng-click="moveResourceDown()"><i class="fa fa-arrow-down"></i></button>
                 </div>
             </div>
-            <div ng-switch-when="1">
-                <button class="btn btn-info btn-xs" ng-click="toggleAddSpace()"><i id="addSpaceButton" class="fa fa-plus"></i></button> New &nbsp; </br></br>
-                <p><b>Selected room:</b></p>
-                <div style="margin-left: 60px">
-                    <button class="btn btn-xs" ng-click="openActionModal()"><i class="fa fa-star"></i></button> Actions &nbsp;
-                    <button class="btn btn-xs" ng-click="openResourceModal()"><i class="fa fa-star"></i></button> Resources &nbsp;
-                    <button class="btn btn-danger btn-xs" ng-click="roomToDelete=room;openDeleteRoomModal()"><i class="fa fa-minus"></i></button> Delete
-                </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="closeAndSaveSpaceResources()">Save</button>
+                <button class="btn btn-danger" ng-click="closeSpaceResources()">Cancel</button>
+            </div>
+        </script>
+    </div>
 
-                <div>
-                    <script type="text/ng-template" id="StudiesActionsModalCtrl.html">
-                        <div class="modal-header">
-                            <h3>Actions</h3>
-                        </div>
-                        <div style="margin-left: 15px;margin-right: 15px">
-                            <div style="float: left; height: 300px;">
-                                <h5>All actions <button class="btn btn-xs" ng-click="isAddActionCollapsed = !isAddActionCollapsed"><i class="fa fa-plus"></i></button></h5>
-                                <div collapse="isAddActionCollapsed" style="margin-bottom: 10px">
-                                    <input type="text" id="actionLabelInput" placeholder="Action name" style="margin-bottom: 0; width: 100px">
-                                    <button class="btn btn-primary" ng-click="isAddActionCollapsed=true;createNewAction()">OK</button>
-                                </div>
-                                <select id="allActionsList" size="2" style="height: 230px">
-                                    <option ng-repeat="action in allActions" value="action._id">{{ action.type }}</option>
-                                </select>
-                            </div>
-                            <div style="float: left; margin-top: 150px; margin-left: 10px; margin-right: 10px">
-                                <button ng-click="removeActionFromSpace()"><i class="fa fa-arrow-left"></i></button>
-                                <button ng-click="addActionToSpace()"><i class="fa fa-arrow-right"></i></button>
-                            </div>
-                            <div style="float: left; height: 300px">
-                                <h5>Selected actions</h5>
-                                <select id="spaceActionsList" size="2" style="height: 230px;margin-top: 10px">
-                                    <option ng-repeat="action in spaceActions" value="action._id">{{ action.type }}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" ng-click="closeAndSaveSpaceActions()">Save</button>
-                            <button class="btn btn-danger" ng-click="closeSpaceActions()">Cancel</button>
-                        </div>
-                    </script>
-                </div>
+    <div>
+        <script type="text/ng-template" id="StudiesDeleteRoomModalCtrl.html">
+            <div class="modal-header">
+                <h3>Delete room?</h3>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure to delete this room?</p>
+                <p>Please note that sessions will not be using this room to map anymore.</p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" ng-click="okDeleteRoom()">Save</button>
+                <button class="btn btn-danger" ng-click="cancelDeleteRoom()">Cancel</button>
+            </div>
+        </script>
+    </div>
 
-                <div>
-                    <script type="text/ng-template" id="StudiesResourcesModalCtrl.html">
-                        <div class="modal-header">
-                            <h3>Resources</h3>
-                        </div>
-                        <div style="margin-left: 15px;margin-right: 15px">
-                            <div style="float: left; height: 300px;">
-                                <h5>All resources <button class="btn btn-xs" ng-click="isAddResourceCollapsed = !isAddResourceCollapsed"><i class="fa fa-plus"></i></button></h5>
-                                <div collapse="isAddResourceCollapsed" style="margin-bottom: 10px">
-                                    <input type="text" id="resourceLabelInput" placeholder="Resource name" style="margin-bottom: 0; width: 100px">
-                                    <button class="btn btn-primary" ng-click="isAddResourceCollapsed=true;createNewResource()">OK</button>
-                                </div>
-                                <select id="allResourcesList" size="2" style="height: 230px">
-                                    <option ng-repeat="resource in allResources" value="resource._id">{{ resource.type }}</option>
-                                </select>
-                            </div>
-                            <div style="float: left; margin-top: 150px; margin-left: 10px; margin-right: 10px">
-                                <button ng-click="removeResourceFromSpace()"><i class="fa fa-arrow-left"></i></button>
-                                <button ng-click="addResourceToSpace()"><i class="fa fa-arrow-right"></i></button>
-                            </div>
-                            <div style="float: left; height: 300px">
-                                <h5>Selected resources</h5>
-                                <select id="spaceResourcesList" size="2" style="height: 230px;margin-top: 10px">
-                                    <option ng-repeat="resource in spaceResources" value="resource._id">{{ resource.type }}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" ng-click="closeAndSaveSpaceResources()">Save</button>
-                            <button class="btn btn-danger" ng-click="closeSpaceResources()">Cancel</button>
-                        </div>
-                    </script>
-                </div>
+    <div collapse="isSpaceActionsEmpty">
+        <div class="alert alert-error">Make sure to pick(create) actions for describing events. Click on "Actions" button to do so.</div>
+    </div>
+    <div collapse="isSpaceResourcesEmpty">
+        <div class="alert alert-error">Make sure to pick(create) resources for describing events. Click on "Resources" button to do so.</div>
+    </div>
 
-                <div>
-                    <script type="text/ng-template" id="StudiesDeleteRoomModalCtrl.html">
-                        <div class="modal-header">
-                            <h3>Delete room?</h3>
-                        </div>
-                        <div class="modal-body">
-                            <p>Are you sure to delete this room?</p>
-                            <p>Please note that sessions will not be using this room to map anymore.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-primary" ng-click="okDeleteRoom()">Save</button>
-                            <button class="btn btn-danger" ng-click="cancelDeleteRoom()">Cancel</button>
-                        </div>
-                    </script>
-                </div>
+    <div collapse="isAddRoomCollapsed"  class="collapsableStudyDiv">
+        <form action="/image" ng-upload id="imageUploaderForm" class="innerCollapsableStudyDiv">
+            <div class="alert alert-info">Please not that images should be 1024px in width and 723px in height.</div>
+            <div collapse="isWrongImageSize">
+                <div class="alert alert-error">The width and height of the image you chose are not compatible.</div>
+            </div>
+            <input type="text" id="roomLabelInput" placeholder="Room label" style="height: 30px;margin-top: 8px" />
+            <input id="imageFileInput" onchange="angular.element(this).scope().file_changed(this)" accept="image/*" type="file" name="file" class="btn" />
+            <input class="btn btn-primary" style="margin-top: 5px" type="submit" value="Upload" upload-submit="roomSubmited(content, completed)" />
+        </form>
 
-                <div collapse="isSpaceActionsEmpty">
-                    <div class="alert alert-error">Make sure to pick(create) actions for describing events. Click on "Actions" button to do so.</div>
-                </div>
-                <div collapse="isSpaceResourcesEmpty">
-                    <div class="alert alert-error">Make sure to pick(create) resources for describing events. Click on "Resources" button to do so.</div>
-                </div>
+    </div>
 
-                <div collapse="isAddRoomCollapsed"  class="collapsableStudyDiv">
-                    <form action="/image" ng-upload id="imageUploaderForm" class="innerCollapsableStudyDiv">
-                        <div class="alert alert-info">Please not that images should be 1024px in width and 723px in height.</div>
-                        <div collapse="isWrongImageSize">
-                            <div class="alert alert-error">The width and height of the image you chose are not compatible.</div>
+    <div style="margin-top: 15px">
+        <div collapse="!isEditRoomCollapsed" style="float: left">
+            <carousel interval="-1" class="studyCarousel">
+                <slide ng-repeat="room in rooms" active="room.active">
+                    <img ng-src="{{room.uri}}" style="margin:auto;" width="300px">
+                    <div class="carousel-caption">
+                        <h4>Room {{$index}}</h4>
+                        <p>{{room.label}}</p>
+                        <div class="studyCarouselRemoveRoom">
+                            <button class="btn btn-primary btn-xs" ng-click="openEditRoom(room)"><i class="fa fa-pencil"></i></button>
                         </div>
-                        <input type="text" id="roomLabelInput" placeholder="Room label" style="height: 30px;margin-top: 8px" />
-                        <input id="imageFileInput" onchange="angular.element(this).scope().file_changed(this)" accept="image/*" type="file" name="file" class="btn" />
-                        <input class="btn btn-primary" style="margin-top: 5px" type="submit" value="Upload" upload-submit="roomSubmited(content, completed)" />
-                    </form>
-
-                </div>
-
-                <div style="margin-top: 15px">
-                    <div collapse="!isEditRoomCollapsed" style="float: left">
-                        <carousel interval="-1" class="studyCarousel">
-                            <slide ng-repeat="room in rooms" active="room.active">
-                                <img ng-src="{{room.uri}}" style="margin:auto;" width="300px">
-                                <div class="carousel-caption">
-                                    <h4>Room {{$index}}</h4>
-                                    <p>{{room.label}}</p>
-                                    <div class="studyCarouselRemoveRoom">
-                                        <button class="btn btn-primary btn-xs" ng-click="openEditRoom(room)"><i class="fa fa-pencil"></i></button>
-                                    </div>
-                                </div>
-                            </slide>
-                        </carousel>
                     </div>
-                    <div collapse="!isEditRoomCollapsed" style="float: right">
-                        <accordion close-others="true">
-                            <accordion-group ng-repeat="session in sessions" heading="Session ({{ sessions.indexOf(session) }}): {{ timeConverter(session.created_on) }}">
-                                <p>Finished on: {{ timeConverter(session.finished_on) }}</p>
-                                <p>Duration: {{ tDiffMoment(session.created_on, session.finished_on, true) }}</p>
-                                <p>Visitor(s): {{ session.visitorgroup.visitors.length }}</p>
-                                <p>Event(s): {{ session.eventob_ids.length }}</p>
-                                <img ng-src="{{session.storage.url}}" width="500px" />
-                            </accordion-group>
-                        </accordion>
-                    </div>
-                    <div collapse="isEditRoomCollapsed">
-                        <button class="btn btn-primary" ng-click="showhideEditMode()">Save</button>
+                </slide>
+            </carousel>
+        </div>
+        <div collapse="!isEditRoomCollapsed" style="float: right">
+            <accordion close-others="true">
+                <accordion-group ng-repeat="session in sessions" heading="Session ({{ sessions.indexOf(session) }}): {{ timeConverter(session.created_on) }}">
+                    <p>Finished on: {{ timeConverter(session.finished_on) }}</p>
+                    <p>Duration: {{ tDiffMoment(session.created_on, session.finished_on, true) }}</p>
+                    <p>Visitor(s): {{ session.visitorgroup.visitors.length }}</p>
+                    <p>Event(s): {{ session.eventob_ids.length }}</p>
+                    <img ng-src="{{session.storage.url}}" width="500px" />
+                </accordion-group>
+            </accordion>
+        </div>
+        <div collapse="isEditRoomCollapsed">
+            <button class="btn btn-primary" ng-click="showhideEditMode()">Save</button>
 
-                        <div style="position: relative; width: 100%; height: 768px">
-                            <div style="width: 1024px; z-index: 0; float: left">
-                                <div style="width: 1024px; height: 768px; background-color: #333333">
-                                    <span style="font-size: 20; color: #FFFFFF; float: left; position: absolute; top: 5px; left: 5px">Navigation Bar</span>
-                                    <img ng-src="{{roomToEdit.uri}}" width="1024px" height="723px" style="position: absolute; top: 45px" >
+            <div style="position: relative; width: 100%; height: 768px">
+                <div style="width: 1024px; z-index: 0; float: left">
+                    <div style="width: 1024px; height: 768px; background-color: #333333">
+                        <span style="font-size: 20; color: #FFFFFF; float: left; position: absolute; top: 5px; left: 5px">Navigation Bar</span>
+                        <img ng-src="{{roomToEdit.uri}}" width="1024px" height="723px" style="position: absolute; top: 45px" >
+                    </div>
+                    <div id="roomToEditLocs" style="position: absolute; top: 45px; left: 0; width: 1024px;height: 740px">
+                        <div style="width: 90px" poi-draggable="{ containment: '#roomToEditLocs', scroll: false }" class="startPoint" id="{{ roomStartPoint.uuid }}" ng-repeat="roomStartPoint in roomStartPoints" ng-style="{left: roomStartPoint.xpos + 'px', top: roomStartPoint.ypos + 'px'}"><img ng-src="img/walkin.png" ng-style="{transform: 'rotate('+roomStartPoint.rotation+'deg)'}"><div style="float: right; width: 10px "><button ng-click="removeStartPoint(roomStartPoint.uuid)"><i class="fa fa-minus"></i></button><button ng-click="rotateStartPoint(roomStartPoint.uuid)"><i class="fa fa-repeat"></i></button></div><div style="float: left; padding-left: 10px; padding-right: 10px; padding-top: 0px"><label style="text-decoration: underline" ng-click="openEditStartPOILabelModal(roomStartPoint)">{{getPOILabel(roomStartPoint)}}</label></div></div>
+                        <div style="width: 90px" poi-draggable="{ containment: '#roomToEditLocs', scroll: false }" class="endPoint" id="{{ roomEndPoint.uuid }}" ng-repeat="roomEndPoint in roomEndPoints" ng-style="{left: roomEndPoint.xpos + 'px', top: roomEndPoint.ypos + 'px'}"><img ng-src="img/walkaway.png" ng-style="{transform: 'rotate('+roomEndPoint.rotation+'deg)'}"><div style="float: right; width: 10px "><button ng-click="removeEndPoint(roomEndPoint.uuid)"><i class="fa fa-minus"></i></button><button ng-click="rotateEndPoint(roomEndPoint.uuid)"><i class="fa fa-repeat"></i></button></div><div style="float: left; padding-left: 10px; padding-right: 10px; padding-top: 0px"><label style="text-decoration: underline" ng-click="openEditEndPOILabelModal(roomEndPoint)">{{getPOILabel(roomEndPoint)}}</label></div></div>
+                        <div>
+                            <script type="text/ng-template" id="OpenEditStartPOILabelModalCtrl.html">
+                                <div class="modal-header">
+                                    <h3>Update entrance label:</h3>
                                 </div>
-                                <div id="roomToEditLocs" style="position: absolute; top: 45px; left: 0; width: 1024px;height: 740px">
-                                    <div style="width: 90px" poi-draggable="{ containment: '#roomToEditLocs', scroll: false }" class="startPoint" id="{{ roomStartPoint.uuid }}" ng-repeat="roomStartPoint in roomStartPoints" ng-style="{left: roomStartPoint.xpos + 'px', top: roomStartPoint.ypos + 'px'}"><img ng-src="img/walkin.png" ng-style="{transform: 'rotate('+roomStartPoint.rotation+'deg)'}"><div style="float: right; width: 10px "><button ng-click="removeStartPoint(roomStartPoint.uuid)"><i class="fa fa-minus"></i></button><button ng-click="rotateStartPoint(roomStartPoint.uuid)"><i class="fa fa-repeat"></i></button></div><div style="float: left; padding-left: 10px; padding-right: 10px; padding-top: 0px"><label style="text-decoration: underline" ng-click="openEditStartPOILabelModal(roomStartPoint)">{{getPOILabel(roomStartPoint)}}</label></div></div>
-                                    <div style="width: 90px" poi-draggable="{ containment: '#roomToEditLocs', scroll: false }" class="endPoint" id="{{ roomEndPoint.uuid }}" ng-repeat="roomEndPoint in roomEndPoints" ng-style="{left: roomEndPoint.xpos + 'px', top: roomEndPoint.ypos + 'px'}"><img ng-src="img/walkaway.png" ng-style="{transform: 'rotate('+roomEndPoint.rotation+'deg)'}"><div style="float: right; width: 10px "><button ng-click="removeEndPoint(roomEndPoint.uuid)"><i class="fa fa-minus"></i></button><button ng-click="rotateEndPoint(roomEndPoint.uuid)"><i class="fa fa-repeat"></i></button></div><div style="float: left; padding-left: 10px; padding-right: 10px; padding-top: 0px"><label style="text-decoration: underline" ng-click="openEditEndPOILabelModal(roomEndPoint)">{{getPOILabel(roomEndPoint)}}</label></div></div>
-                                    <div>
-                                        <script type="text/ng-template" id="OpenEditStartPOILabelModalCtrl.html">
-                                            <div class="modal-header">
-                                                <h3>Update entrance label:</h3>
-                                            </div>
-                                            <div class="modal-body">
-                                                <input type="text" ng-model="startPOILabel" style="margin-bottom: 0; width: 300px">
-                                                <button class="btn btn-primary" ng-click="updateLabel(startPOILabel)">Update</button>
-                                            </div>
-                                        </script>
-                                    </div>
-                                    <div>
-                                        <script type="text/ng-template" id="OpenEditEndPOILabelModalCtrl.html">
-                                            <div class="modal-header">
-                                                <h3>Update exit label:</h3>
-                                            </div>
-                                            <div class="modal-body">
-                                                <input type="text" ng-model="endPOILabel" style="margin-bottom: 0; width: 300px">
-                                                <button class="btn btn-primary" ng-click="updateLabel(endPOILabel)">Update</button>
-                                            </div>
-                                        </script>
-                                    </div>
+                                <div class="modal-body">
+                                    <input type="text" ng-model="startPOILabel" style="margin-bottom: 0; width: 300px">
+                                    <button class="btn btn-primary" ng-click="updateLabel(startPOILabel)">Update</button>
                                 </div>
-                            </div>
-                            <div style="float: left;margin-left: 15px">
-                                <img src="img/walkin.png">
-                                <button ng-click="addStartPoint()"><i class="fa fa-plus"></i></button>
-                            </div>
-                            <div style="float: left;margin-left: 15px">
-                                <img src="img/walkaway.png">
-                                <button ng-click="addEndPoint()"><i class="fa fa-plus"></i></button>
-                            </div>
+                            </script>
+                        </div>
+                        <div>
+                            <script type="text/ng-template" id="OpenEditEndPOILabelModalCtrl.html">
+                                <div class="modal-header">
+                                    <h3>Update exit label:</h3>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" ng-model="endPOILabel" style="margin-bottom: 0; width: 300px">
+                                    <button class="btn btn-primary" ng-click="updateLabel(endPOILabel)">Update</button>
+                                </div>
+                            </script>
                         </div>
                     </div>
                 </div>
-
+                <div style="float: left;margin-left: 15px">
+                    <img src="img/walkin.png">
+                    <button ng-click="addStartPoint()"><i class="fa fa-plus"></i></button>
+                </div>
+                <div style="float: left;margin-left: 15px">
+                    <img src="img/walkaway.png">
+                    <button ng-click="addEndPoint()"><i class="fa fa-plus"></i></button>
+                </div>
             </div>
         </div>
     </div>
+
+</div>
+</div>
+</div>
 </div>

@@ -357,6 +357,14 @@ iObserveApp.factory('iObserveUtilities', function ($http) {
         return result;
     };
 
+    var sortByOrder = function (a,b) {
+        if (a.order < b.order)
+            return -1;
+        if (a.order > b.order)
+            return 1;
+        return 0;
+    };
+
     return {
         timeConverter : timeConverter,
         timeConverterShort : timeConverterShort,
@@ -367,6 +375,7 @@ iObserveApp.factory('iObserveUtilities', function ($http) {
         decColor2hex : decColor2hex,
         tDiffMoment: tDiffMoment,
         loadJSONFile: loadJSONFile,
+        sortByOrder: sortByOrder,
         colorsUsed: colorsUsed
     }
 });

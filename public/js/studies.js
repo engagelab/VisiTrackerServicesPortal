@@ -19,15 +19,15 @@ iObserveApp.directive('poiDraggable', function () {
 
 
 /*iObserveApp.controller('SurveyDropdownCtrl', function ($scope) {
-    $scope.items = [
-        {"text": "Short Text", "clicktext": "addSelectedQuestion('tf')"},
-        {"text": "Long Text", "clicktext": "addSelectedQuestion('ta')"},
-        {"text": "Single Choice or Ranking", "clicktext": "addSelectedQuestion('rb')"},
-        {"text": "Multiple Choice Checkboxes", "clicktext": "addSelectedQuestion('cb')"}
-    ];
+ $scope.items = [
+ {"text": "Short Text", "clicktext": "addSelectedQuestion('tf')"},
+ {"text": "Long Text", "clicktext": "addSelectedQuestion('ta')"},
+ {"text": "Single Choice or Ranking", "clicktext": "addSelectedQuestion('rb')"},
+ {"text": "Multiple Choice Checkboxes", "clicktext": "addSelectedQuestion('cb')"}
+ ];
 
-});
-*/
+ });
+ */
 //iObserveApp.controller('StudiesCtrl', function ($scope, $dialog, iObserveUser, iObserveData, iObserveUtilities) {
 iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iObserveData, iObserveUtilities) {
 
@@ -41,7 +41,7 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
     $scope.currentSurvey = null;
     $scope.rooms = null;
     $scope.surveys = null;
-//    $scope.sessions = null;
+    $scope.sessions = null;
     $scope.roomLabel = "";
     $scope.studyToDelete = null;
     $scope.roomToDelete = null;
@@ -96,6 +96,7 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
 
     function initStudiesPage() {
         console.log("refreshing studies ....");
+        //$scope.studies = iObserveData.doGetStatsStudies();
         $scope.studies = iObserveData.doGetStudies();
         $scope.studies.then(function (response) {
             $scope.studies = response[0];
@@ -164,24 +165,23 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
 
     };
 
-
     $scope.getActions = function () {
         var doactions = iObserveData.doGetActions();
         doactions.then(function (data) {
             var resultData = data[0];
             var actionsIds = [];
+
+            var unsortedActions = [];
             for (var j = 0; j < $scope.currentStudy.actions.length; j++) {
                 actionsIds.push($scope.currentStudy.actions[j]._id);
+                unsortedActions.push($scope.currentStudy.actions[j]);
             }
 
-            $scope.allActions = [];
-            $scope.spaceActions = [];
+            $scope.spaceActions = unsortedActions.sort(iObserveUtilities.sortByOrder);
 
+            $scope.allActions = [];
             for (var i = 0; i < resultData.length; i++) {
-                if (actionsIds.indexOf(resultData[i]._id) > -1) {
-                    $scope.spaceActions.push(resultData[i]);
-                }
-                else {
+                if (actionsIds.indexOf(resultData[i]._id) == -1) {
                     $scope.allActions.push(resultData[i]);
                 }
             }
@@ -196,18 +196,18 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
         iObserveData.doGetResources().then(function (data) {
             var resultData = data[0];
             var resourcesIds = [];
+
+            var unsortedResources = [];
             for (var j = 0; j < $scope.currentStudy.resources.length; j++) {
                 resourcesIds.push($scope.currentStudy.resources[j]._id);
+                unsortedResources.push($scope.currentStudy.resources[j]);
             }
 
-            $scope.allResources = [];
-            $scope.spaceResources = [];
+            $scope.spaceResources = unsortedResources.sort(iObserveUtilities.sortByOrder);
 
+            $scope.allResources = [];
             for (var i = 0; i < resultData.length; i++) {
-                if (resourcesIds.indexOf(resultData[i]._id) > -1) {
-                    $scope.spaceResources.push(resultData[i]);
-                }
-                else {
+                if (resourcesIds.indexOf(resultData[i]._id) == -1) {
                     $scope.allResources.push(resultData[i]);
                 }
             }
@@ -216,7 +216,7 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
                 $scope.isSpaceResourcesEmpty = false;
             }
         });
-    };
+    }
 
     //expand study
     $scope.expandStudy = function ($study, e) {
@@ -239,14 +239,16 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
         $scope.currentSelectedSurvey = null;
         $scope.refreshSurveys();
         $scope.rooms = $scope.currentStudy.rooms;
+        $scope.sessions = $scope.currentStudy.sessionobs;
 
-/*        $scope.sessions = $scope.currentStudy.sessionobs;
-        // hide unfinished sessions from the result
-        for (var k = 0; k < $scope.sessions.length; k++) {
-            if ($scope.sessions[k].finished_on == null) {
-                $scope.sessions.splice(k, 1);
+        if($scope.sessions != null) {
+            // hide unfinished sessions from the result
+            for (var k = 0; k < $scope.sessions.length; k++) {
+                if ($scope.sessions[k].finished_on == null) {
+                    $scope.sessions.splice(k, 1);
+                }
             }
-        }*/
+        }
 
         $scope.getActions();
         $scope.getResources();
@@ -613,7 +615,7 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
                 {result: 'ok', label: 'OK', cssClass: 'btn-primary'}
             ];
 
-           /* $dialog.messageBox(title, msg, btns).open();       */
+            /* $dialog.messageBox(title, msg, btns).open();       */
         }
     }
 
@@ -818,9 +820,9 @@ iObserveApp.controller('StudiesCtrl', function ($scope, $modal, iObserveUser, iO
     $scope.openDeleteRoomModal = function() {
 
         $scope.rooms.forEach(function(room){
-           if(room.active) {
-           $scope.roomToDelete = room;
-           }
+            if(room.active) {
+                $scope.roomToDelete = room;
+            }
         });
 
 
@@ -966,7 +968,7 @@ iObserveApp.controller('StudiesDeleteRoomModalInstanceCtrl', function($scope, iO
     };
 });
 
-iObserveApp.controller('StudiesActionsModalInstanceCtrl', function($scope, iObserveData, $modalInstance, allActions, spaceActions, currentStudy) {
+iObserveApp.controller('StudiesActionsModalInstanceCtrl', function($scope, iObserveData, iObserveUtilities, $modalInstance, allActions, spaceActions, currentStudy) {
     $scope.isAddActionCollapsed = true;
     $scope.allActions = allActions;
     $scope.spaceActions = spaceActions;
@@ -1010,9 +1012,64 @@ iObserveApp.controller('StudiesActionsModalInstanceCtrl', function($scope, iObse
     $scope.addActionToSpace = function () {
         var selectBoxAllActions = angular.element.find('#allActionsList option:selected');
 
+        var newAction;
         for (var i = 0; i < selectBoxAllActions.length; i++) {
-            $scope.spaceActions.push($scope.allActions[selectBoxAllActions[i].index]);
+            newAction = $scope.allActions[selectBoxAllActions[i].index];
+            newAction.order = $scope.spaceActions.length;
+            $scope.spaceActions.push(newAction);
             $scope.allActions.splice(selectBoxAllActions[i].index, 1);
+        };
+    };
+
+    $scope.moveActionUp = function() {
+        var selectBoxSpaceActions = angular.element.find('#spaceActionsList option:selected');
+
+        if(selectBoxSpaceActions.length > 0) {
+
+            for(var i=0; i<$scope.spaceActions.length; i++) {
+                if($scope.spaceActions[i].type == selectBoxSpaceActions[0].label) {
+                    moveUp($scope.spaceActions[i].order);
+                    break;
+                }
+            };
+
+        }
+    };
+
+    function moveUp(ind) {
+        if(ind > 0) {
+            var entryBefore = $scope.spaceActions[ind-1];
+            var entryToMove = $scope.spaceActions[ind];
+            entryBefore.order = entryBefore.order + 1;
+            entryToMove.order = entryToMove.order - 1;
+            $scope.spaceActions[ind-1] = entryBefore;
+            $scope.spaceActions[ind] = entryToMove;
+            $scope.spaceActions = $scope.spaceActions.sort(iObserveUtilities.sortByOrder);
+        }
+    };
+
+    $scope.moveActionDown = function() {
+        var selectBoxSpaceActions = angular.element.find('#spaceActionsList option:selected');
+
+        if(selectBoxSpaceActions.length > 0) {
+            for(var i=0; i<$scope.spaceActions.length; i++) {
+                if($scope.spaceActions[i].type == selectBoxSpaceActions[0].label) {
+                    moveDown($scope.spaceActions[i].order);
+                    break;
+                }
+            };
+        }
+    };
+
+    function moveDown(ind) {
+        if(ind < ($scope.spaceActions.length-1)) {
+            var entryAfter = $scope.spaceActions[ind+1];
+            var entryToMove = $scope.spaceActions[ind];
+            entryAfter.order = entryAfter.order - 1;
+            entryToMove.order = entryToMove.order + 1;
+            $scope.spaceActions[ind+1] = entryAfter;
+            $scope.spaceActions[ind] = entryToMove;
+            $scope.spaceActions = $scope.spaceActions.sort(iObserveUtilities.sortByOrder);
         }
     };
 
@@ -1033,7 +1090,7 @@ iObserveApp.controller('StudiesActionsModalInstanceCtrl', function($scope, iObse
 });
 
 
-iObserveApp.controller('StudiesResourcesModalInstanceCtrl', function($scope, iObserveData, $modalInstance, allResources, spaceResources, currentStudy) {
+iObserveApp.controller('StudiesResourcesModalInstanceCtrl', function($scope, iObserveData, iObserveUtilities, $modalInstance, allResources, spaceResources, currentStudy) {
     $scope.isAddResourceCollapsed = true;
     $scope.allResources = allResources;
     $scope.spaceResources = spaceResources;
@@ -1077,9 +1134,64 @@ iObserveApp.controller('StudiesResourcesModalInstanceCtrl', function($scope, iOb
     $scope.addResourceToSpace = function () {
         var selectBoxAllResources = angular.element.find('#allResourcesList option:selected');
 
+        var newResource;
         for (var i = 0; i < selectBoxAllResources.length; i++) {
-            $scope.spaceResources.push($scope.allResources[selectBoxAllResources[i].index]);
+            newResource = $scope.allResources[selectBoxAllResources[i].index];
+            newResource.order = $scope.spaceResources.length;
+            $scope.spaceResources.push(newResource);
             $scope.allResources.splice(selectBoxAllResources[i].index, 1);
+        };
+    };
+
+    $scope.moveResourceUp = function() {
+        var selectBoxAllResources = angular.element.find('#spaceResourcesList option:selected');
+
+        if(selectBoxAllResources.length > 0) {
+
+            for(var i=0; i<$scope.spaceResources.length; i++) {
+                if($scope.spaceResources[i].type == selectBoxAllResources[0].label) {
+                    moveUp($scope.spaceResources[i].order);
+                    break;
+                }
+            };
+
+        }
+    };
+
+    function moveUp(ind) {
+        if(ind > 0) {
+            var entryBefore = $scope.spaceResources[ind-1];
+            var entryToMove = $scope.spaceResources[ind];
+            entryBefore.order = entryBefore.order + 1;
+            entryToMove.order = entryToMove.order - 1;
+            $scope.spaceResources[ind-1] = entryBefore;
+            $scope.spaceResources[ind] = entryToMove;
+            $scope.spaceResources = $scope.spaceResources.sort(iObserveUtilities.sortByOrder);
+        }
+    };
+
+    $scope.moveResourceDown = function() {
+        var selectBoxAllResources = angular.element.find('#spaceResourcesList option:selected');
+
+        if(selectBoxAllResources.length > 0) {
+            for(var i=0; i<$scope.spaceResources.length; i++) {
+                if($scope.spaceResources[i].type == selectBoxAllResources[0].label) {
+                    moveDown($scope.spaceResources[i].order);
+                    break;
+                }
+            };
+        }
+    };
+
+    function moveDown(ind) {
+        if(ind < ($scope.spaceResources.length-1)) {
+            var entryAfter = $scope.spaceResources[ind+1];
+            var entryToMove = $scope.spaceResources[ind];
+            entryAfter.order = entryAfter.order - 1;
+            entryToMove.order = entryToMove.order + 1;
+            $scope.spaceResources[ind+1] = entryAfter;
+            $scope.spaceResources[ind] = entryToMove;
+            $scope.spaceResources = $scope.spaceResources.sort(iObserveUtilities.sortByOrder);
         }
     };
 
